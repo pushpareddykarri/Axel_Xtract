@@ -1,0 +1,490 @@
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="white" type="ball-fussion">
+    <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>
+<!-- <ngx-spinner bdColor="rgba(51,51,51,0.8)" size="large" color="#fff" type="ball-circus" [fullScreen] = "true"></ngx-spinner> -->
+
+<app-header></app-header>
+<div class="Refresh">Updated: 06/08/22 07:35:56 am <img src="../../../assets/images/refresh_icon.png" alt=""> </div>
+<div class="container-fluid pe-0 mt-1">
+    <div class="col-12">
+        <div class="d-flex">
+            <div class="gross-tbl table-responsive">
+                <table>
+                    <thead style="cursor: pointer;white-space: nowrap;">
+                        <tr>
+                            <th rowspan="2" style="padding-left: 1.3rem;">Units And Gross</th>
+                        </tr>
+                        <tr>
+                            <th rowspan="2" style="font-size: 0.6rem;padding-left: 1rem;">&nbsp;&nbsp;<i>As of
+                                    {{TodayDate | date:'MMMM'}}&nbsp;{{TodayDate |date:'d'}} @{{time | date:'h:mm a'}}
+                                </i></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="title">
+                            <td>
+                                <span> SALES </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                New Units
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Used Units
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="total">
+                                Total units
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Front Gross
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Front PVR
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Back Gross
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Back PVR
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="total">
+                                Total Gross
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="total">
+                                Total PVR
+                            </td>
+
+                        </tr>
+                    <tbody>
+                </table>
+            </div>
+            <div class="sec-tbl table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th colspan="2"></th>
+                            <th id="DataHead2">Today</th>
+                            <th id="DataHead5">vs. Daily Goal</th>
+                            <th id="DataHead2">MTD</th>
+                            <th id="DataHead3">Pace</th>
+                            <th id="DataHead4">Goal</th>
+                            <th id="DataHead6">Variance</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="unitsandgross != '' ">
+                        <tr>
+
+                            <td id="DataBody2" colspan="8"
+                                style="color: #f1f1f1;background-color: #f1f1f1;border-right: 2px solid #e0e1e2;">&nbsp;
+                            </td>
+                        </tr>
+
+                        <tr class="titleOdd">
+                            <!-- [ngClass]="{'titleOdd' : i % 2 == 0 , 'title' : i % 2 != 0 }" -->
+
+                            <td colspan="2">&nbsp;&nbsp;</td>
+                            <td id="DataBody2" [ngClass]="{ negative: !inTheGreen(unitsandgross.Today[0].MTD_New[0])}">
+                                {{(unitsandgross.Today[0].MTD_New[0] == 0 ? '-' : unitsandgross.Today[0].MTD_New[0] |
+                                number )}}
+                            </td>
+                            <td id="DataBody2"
+                                [ngClass]="{ negative: !inTheGreen(unitsandgross.Total[0].PerDay_New[0])}">
+                                {{(unitsandgross.Total[0].PerDay_New[0] == 0 ? '-' :
+                                unitsandgross.Total[0].PerDay_New[0] |
+                                number )}}
+                            </td>
+                            <td id="DataBody2" [ngClass]="{ negative: !inTheGreen(unitsandgross.Total[0].MTD_New[0])}">
+                                {{(unitsandgross.Total[0].MTD_New[0] == 0 ? '-' : unitsandgross.Total[0].MTD_New[0] |
+                                number )}}
+                            </td>
+                            <td id="DataBody2"
+                                [ngClass]="{ negative: !inTheGreen(unitsandgross.Total[0].Pace_UnitsNew[0])}">
+                                {{(unitsandgross.Total[0].Pace_UnitsNew[0] == 0 ? '-' :
+                                unitsandgross.Total[0].Pace_UnitsNew[0] |
+                                number )}}
+                            </td>
+                            <td id="DataBody2" [ngClass]="{ negative: !inTheGreen(unitsandgross.Total[0].Goal_New[0])}">
+                                {{(unitsandgross.Total[0].Goal_New[0] == 0 ? '-' : unitsandgross.Total[0].Goal_New[0] |
+                                number )}}
+                            </td>
+                            <td id="DataBody2"
+                                [ngClass]="{ negative: !inTheGreen(unitsandgross.Total[0].Pace_UnitsNew[0]*1 - unitsandgross.Total[0].Goal_New[0]*1 )}">
+                                {{(unitsandgross.Total[0].Pace_UnitsNew[0]*1 - unitsandgross.Total[0].Goal_New[0]*1 == 0
+                                ? '-' : unitsandgross.Total[0].Pace_UnitsNew[0]*1 - unitsandgross.Total[0].Goal_New[0]*1
+                                |
+                                number )}}
+
+                            </td>
+
+                        </tr>
+                        <tr class="title">
+                            <!-- [ngClass]="{'titleOdd' : i % 2 == 0 , 'title' : i % 2 != 0 }" -->
+
+                            <td colspan="2">&nbsp;&nbsp;</td>
+                            <td id="DataBody2" [ngClass]="{ negative: !inTheGreen(unitsandgross.Today[0].MTD_Used[0])}">
+                                {{(unitsandgross.Today[0].MTD_Used[0] == 0 ? '-' : unitsandgross.Today[0].MTD_Used[0] |
+                                number )}}
+                            </td>
+                            <td id="DataBody2"
+                                [ngClass]="{ negative: !inTheGreen(unitsandgross.Total[0].PerDay_Used[0])}">
+                                {{(unitsandgross.Total[0].PerDay_Used[0] == 0 ? '-' :
+                                unitsandgross.Total[0].PerDay_Used[0] |
+                                number )}}
+                            </td>
+                            <td id="DataBody2" [ngClass]="{ negative: !inTheGreen(unitsandgross.Total[0].MTD_Used[0])}">
+                                {{(unitsandgross.Total[0].MTD_Used[0] == 0 ? '-' : unitsandgross.Total[0].MTD_Used[0] |
+                                number )}}
+                            </td>
+                            <td id="DataBody2"
+                                [ngClass]="{ negative: !inTheGreen(unitsandgross.Total[0].Pace_UnitsUsed[0])}">
+                                {{(unitsandgross.Total[0].Pace_UnitsUsed[0] == 0 ? '-' :
+                                unitsandgross.Total[0].Pace_UnitsUsed[0] |
+                                number )}}
+                            </td>
+                            <td id="DataBody2"
+                                [ngClass]="{ negative: !inTheGreen(unitsandgross.Total[0].Goal_USed[0])}">
+                                {{(unitsandgross.Total[0].Goal_USed[0] == 0 ? '-' : unitsandgross.Total[0].Goal_USed[0]
+                                |
+                                number )}}
+                            </td>
+                            <td id="DataBody2"
+                                [ngClass]="{ negative: !inTheGreen(unitsandgross.Total[0].Pace_UnitsUsed[0]*1 - unitsandgross.Total[0].Goal_USed[0]*1 )}">
+                                {{(unitsandgross.Total[0].Pace_UnitsUsed[0]*1 - unitsandgross.Total[0].Goal_USed[0]*1 ==
+                                0 ? '-' : unitsandgross.Total[0].Pace_UnitsUsed[0]*1 -
+                                unitsandgross.Total[0].Goal_USed[0]*1 |
+                                number )}}
+                            </td>
+
+                        </tr>
+                        <tr class="titleOdd">
+
+
+                            <td colspan="2">&nbsp;&nbsp;</td>
+                            <td id="DataBody2"
+                                [ngClass]="{ negative: !inTheGreen(unitsandgross.Today[0].MTD_Total[0])}">
+                                {{(unitsandgross.Today[0].MTD_Total[0] == 0 ? '-' : unitsandgross.Today[0].MTD_Total[0]
+                                |
+                                number )}}
+                            </td>
+                            <td id="DataBody2"
+                                [ngClass]="{ negative: !inTheGreen(unitsandgross.Total[0].PerDay_Total[0])}">
+                                {{(unitsandgross.Total[0].PerDay_Total[0] == 0 ? '-' :
+                                unitsandgross.Total[0].PerDay_Total[0] |
+                                number )}}
+                            </td>
+                            <td id="DataBody2"
+                                [ngClass]="{ negative: !inTheGreen(unitsandgross.Total[0].MTD_Total[0])}">
+                                {{(unitsandgross.Total[0].MTD_Total[0] == 0 ? '-' : unitsandgross.Total[0].MTD_Total[0]
+                                |
+                                number )}}
+                            </td>
+                            <td id="DataBody2"
+                                [ngClass]="{ negative: !inTheGreen(unitsandgross.Total[0].Pace_UnitsTotal[0])}">
+                                {{(unitsandgross.Total[0].Pace_UnitsTotal[0] == 0 ? '-' :
+                                unitsandgross.Total[0].Pace_UnitsTotal[0] |
+                                number )}}
+                            </td>
+                            <td id="DataBody2"
+                                [ngClass]="{ negative: !inTheGreen(unitsandgross.Total[0].Goal_Total[0])}">
+                                {{(unitsandgross.Total[0].Goal_Total[0] == 0 ? '-' : unitsandgross.Total[0].Goal_Total[0] |
+                                number )}}
+                            </td>
+                            <td id="DataBody2"
+                                [ngClass]="{ negative: !inTheGreen(unitsandgross.Total[0].Pace_UnitsTotal[0]*1 - unitsandgross.Total[0].Goal_Total[0]*1 )}">
+                                {{(unitsandgross.Total[0].Pace_UnitsTotal[0]*1 - unitsandgross.Total[0].Goal_Total[0]*1
+                                == 0 ? '-' : unitsandgross.Total[0].Pace_UnitsTotal[0]*1 -
+                                unitsandgross.Total[0].Goal_Total[0]*1 |
+                                number )}}
+
+                            </td>
+
+                        </tr>
+                        <tr class="title">
+
+                            <td colspan="2">&nbsp;&nbsp;</td>
+                            <td id="DataBody2"
+                                [ngClass]="{ negative: !inTheGreen(unitsandgross.Today[0].MTD_FrontGross[0])}">
+                                {{(unitsandgross.Today[0].MTD_FrontGross[0] == 0 ? '-' :
+                                unitsandgross.Today[0].MTD_FrontGross[0] |
+                                currency:'USD':'symbol':'1.0-0' )}}
+                            </td>
+                            <td id="DataBody2"
+                                [ngClass]="{ negative: !inTheGreen(unitsandgross.Total[0].PerDay_FrontGross[0])}">
+                                {{(unitsandgross.Total[0].PerDay_FrontGross[0] == 0 ? '-' :
+                                unitsandgross.Total[0].PerDay_FrontGross[0] |
+                                currency:'USD':'symbol':'1.0-0' )}}
+                            </td>
+                            <td id="DataBody2"
+                                [ngClass]="{ negative: !inTheGreen(unitsandgross.Total[0].MTD_FrontGross[0])}">
+                                {{(unitsandgross.Total[0].MTD_FrontGross[0] == 0 ? '-' :
+                                unitsandgross.Total[0].MTD_FrontGross[0] |
+                                currency:'USD':'symbol':'1.0-0' )}}
+                            </td>
+                            <td id="DataBody2"
+                                [ngClass]="{ negative: !inTheGreen(unitsandgross.Total[0].Pace_FrontGross[0])}">
+                                {{(unitsandgross.Total[0].Pace_FrontGross[0] == 0 ? '-' :
+                                unitsandgross.Total[0].Pace_FrontGross[0] |
+                                currency:'USD':'symbol':'1.0-0' )}}
+                            </td>
+                            <td id="DataBody2"
+                                [ngClass]="{ negative: !inTheGreen(unitsandgross.Total[0].Goal_FrontGross[0])}">
+                                {{(unitsandgross.Total[0].Goal_FrontGross[0] == 0 ? '-' :
+                                unitsandgross.Total[0].Goal_FrontGross[0] |
+                                currency:'USD':'symbol':'1.0-0' )}}
+                            </td>
+                            <td id="DataBody2"
+                                [ngClass]="{ negative: !inTheGreen(unitsandgross.Total[0].Pace_FrontGross[0]*1 - unitsandgross.Total[0].Goal_FrontGross[0]*1 )}">
+                                {{(unitsandgross.Total[0].Pace_FrontGross[0]*1 -
+                                unitsandgross.Total[0].Goal_FrontGross[0]*1 == 0 ? '-' :
+                                unitsandgross.Total[0].Pace_FrontGross[0]*1 -
+                                unitsandgross.Total[0].Goal_FrontGross[0]*1 |
+                                currency:'USD':'symbol':'1.0-0' )}}
+                            </td>
+
+                        </tr>
+                        <tr class="titleOdd">
+
+
+                            <td colspan="2">&nbsp;&nbsp;</td>
+                            <td id="DataBody2"
+                                [ngClass]="{ negative: !inTheGreen(unitsandgross.Today[0].MTD_FrontPVR[0])}">
+                                {{(unitsandgross.Today[0].MTD_FrontPVR[0] == 0 ? '-' :
+                                unitsandgross.Today[0].MTD_FrontPVR[0] |
+                                currency:'USD':'symbol':'1.0-0' )}}
+                            </td>
+                            <td id="DataBody2"
+                                [ngClass]="{ negative: !inTheGreen(unitsandgross.Total[0].PerDay_FrontPvr[0])}">
+                                {{(unitsandgross.Total[0].PerDay_FrontPvr[0] == 0 ? '-' :
+                                unitsandgross.Total[0].PerDay_FrontPvr[0] |
+                                currency:'USD':'symbol':'1.0-0' )}}
+                            </td>
+                            <td id="DataBody2"
+                                [ngClass]="{ negative: !inTheGreen(unitsandgross.Total[0].MTD_FrontPVR[0])}">
+                                {{(unitsandgross.Total[0].MTD_FrontPVR[0] == 0 ? '-' :
+                                unitsandgross.Total[0].MTD_FrontPVR[0] |
+                                currency:'USD':'symbol':'1.0-0' )}}
+                            </td>
+                            <td id="DataBody2"
+                                [ngClass]="{ negative: !inTheGreen(unitsandgross.Total[0].Pace_FrontPvr[0])}">
+                                {{(unitsandgross.Total[0].Pace_FrontPvr[0] == 0 ? '-' :
+                                unitsandgross.Total[0].Pace_FrontPvr[0] |
+                                currency:'USD':'symbol':'1.0-0' )}}
+                            </td>
+                            <td id="DataBody2"
+                                [ngClass]="{ negative: !inTheGreen(unitsandgross.Total[0].Goal_FrontPVR[0])}">
+                                {{(unitsandgross.Total[0].Goal_FrontPVR[0] == 0 ? '-' :
+                                unitsandgross.Total[0].Goal_FrontPVR[0] |
+                                currency:'USD':'symbol':'1.0-0' )}}
+                            </td>
+                            <td id="DataBody2"
+                                [ngClass]="{ negative: !inTheGreen(unitsandgross.Total[0].Pace_FrontPvr[0]*1 - unitsandgross.Total[0].Goal_FrontPVR[0]*1 )}">
+                                {{(unitsandgross.Total[0].Pace_FrontPvr[0]*1 - unitsandgross.Total[0].Goal_FrontPVR[0]*1
+                                == 0 ? '-' : unitsandgross.Total[0].Pace_FrontPvr[0]*1 -
+                                unitsandgross.Total[0].Goal_FrontPVR[0]*1 |
+                                currency:'USD':'symbol':'1.0-0' )}}
+
+                            </td>
+
+                        </tr>
+                        <tr class="title">
+
+
+                            <td colspan="2">&nbsp;&nbsp;</td>
+                            <td id="DataBody2"
+                                [ngClass]="{ negative: !inTheGreen(unitsandgross.Today[0].MTD_BackGross[0])}">
+                                {{(unitsandgross.Today[0].MTD_BackGross[0] == 0 ? '-' :
+                                unitsandgross.Today[0].MTD_BackGross[0]
+                                |currency:'USD':'symbol':'1.0-0' )}}
+                            </td>
+                            <td id="DataBody2"
+                                [ngClass]="{ negative: !inTheGreen(unitsandgross.Total[0].PerDay_BackGross[0])}">
+                                {{(unitsandgross.Total[0].PerDay_BackGross[0] == 0 ? '-' :
+                                unitsandgross.Total[0].PerDay_BackGross[0]
+                                |currency:'USD':'symbol':'1.0-0' )}}
+                            </td>
+                            <td id="DataBody2"
+                                [ngClass]="{ negative: !inTheGreen(unitsandgross.Total[0].MTD_BackGross[0])}">
+                                {{(unitsandgross.Total[0].MTD_BackGross[0] == 0 ? '-' :
+                                unitsandgross.Total[0].MTD_BackGross[0]
+                                |currency:'USD':'symbol':'1.0-0' )}}
+                            </td>
+                            <td id="DataBody2"
+                                [ngClass]="{ negative: !inTheGreen(unitsandgross.Total[0].Pace_BackGross_Pace[0])}">
+                                {{(unitsandgross.Total[0].Pace_BackGross_Pace[0] == 0 ? '-' :
+                                unitsandgross.Total[0].Pace_BackGross_Pace[0]
+                                |currency:'USD':'symbol':'1.0-0' )}}
+                            </td>
+                            <td id="DataBody2"
+                                [ngClass]="{ negative: !inTheGreen(unitsandgross.Total[0].Goal_BackGross[0])}">
+                                {{(unitsandgross.Total[0].Goal_BackGross[0] == 0 ? '-' :
+                                unitsandgross.Total[0].Goal_BackGross[0] |
+                                currency:'USD':'symbol':'1.0-0' )}}
+                            </td>
+                            <td id="DataBody2"
+                                [ngClass]="{ negative: !inTheGreen(unitsandgross.Total[0].Pace_BackGross_Pace[0]*1 - unitsandgross.Total[0].Goal_BackGross[0]*1 )}">
+                                {{(unitsandgross.Total[0].Pace_BackGross_Pace[0]*1 -
+                                unitsandgross.Total[0].Goal_BackGross[0]*1 == 0 ? '-' :
+                                unitsandgross.Total[0].Pace_BackGross_Pace[0]*1 -
+                                unitsandgross.Total[0].Goal_BackGross[0]*1 |
+                                currency:'USD':'symbol':'1.0-0' )}}
+                            </td>
+
+                        </tr>
+                        <tr class="titleOdd">
+
+                            <td colspan="2">&nbsp;&nbsp;</td>
+                            <td id="DataBody2"
+                                [ngClass]="{ negative: !inTheGreen(unitsandgross.Today[0].MTD_BackPVR[0])}">
+                                {{(unitsandgross.Today[0].MTD_BackPVR[0] == 0 ? '-' :
+                                unitsandgross.Today[0].MTD_BackPVR[0]
+                                |currency:'USD':'symbol':'1.0-0' )}}
+                            </td>
+                            <td id="DataBody2"
+                                [ngClass]="{ negative: !inTheGreen(unitsandgross.Total[0].PerDay_BackPvr[0])}">
+                                {{(unitsandgross.Total[0].PerDay_BackPvr[0] == 0 ? '-' :
+                                unitsandgross.Total[0].PerDay_BackPvr[0]
+                                |currency:'USD':'symbol':'1.0-0' )}}
+                            </td>
+                            <td id="DataBody2"
+                                [ngClass]="{ negative: !inTheGreen(unitsandgross.Total[0].MTD_BackPVR[0])}">
+                                {{(unitsandgross.Total[0].MTD_BackPVR[0] == 0 ? '-' :
+                                unitsandgross.Total[0].MTD_BackPVR[0]
+                                |currency:'USD':'symbol':'1.0-0' )}}
+                            </td>
+                            <td id="DataBody2"
+                                [ngClass]="{ negative: !inTheGreen(unitsandgross.Total[0].Pace_BackPvr[0])}">
+                                {{(unitsandgross.Total[0].Pace_BackPvr[0] == 0 ? '-' :
+                                unitsandgross.Total[0].Pace_BackPvr[0]
+                                |currency:'USD':'symbol':'1.0-0' )}}
+                            </td>
+                            <td id="DataBody2"
+                                [ngClass]="{ negative: !inTheGreen(unitsandgross.Total[0].Goal_BackPVR[0])}">
+                                {{(unitsandgross.Total[0].Goal_BackPVR[0] == 0 ? '-' :
+                                unitsandgross.Total[0].Goal_BackPVR[0]
+                                |currency:'USD':'symbol':'1.0-0' )}}
+                            </td>
+                            <td id="DataBody2"
+                                [ngClass]="{ negative: !inTheGreen(unitsandgross.Total[0].Pace_BackPvr[0]*1 - unitsandgross.Total[0].Goal_BackPVR[0]*1 )}">
+                                {{(unitsandgross.Total[0].Pace_BackPvr[0]*1 - unitsandgross.Total[0].Goal_BackPVR[0]*1
+                                == 0 ? '-' : unitsandgross.Total[0].Pace_BackPvr[0]*1 -
+                                unitsandgross.Total[0].Goal_BackPVR[0]*1 |
+                                currency:'USD':'symbol':'1.0-0' )}}
+
+                            </td>
+
+                        </tr>
+                        <tr class="title">
+
+
+                            <td colspan="2">&nbsp;&nbsp;</td>
+                            <td id="DataBody2"
+                                [ngClass]="{ negative: !inTheGreen(unitsandgross.Today[0].MTD_TotalGross[0])}">
+                                {{(unitsandgross.Today[0].MTD_TotalGross[0] == 0 ? '-' :
+                                unitsandgross.Today[0].MTD_TotalGross[0]
+                                |currency:'USD':'symbol':'1.0-0' )}}
+                            </td>
+                            <td id="DataBody2"
+                                [ngClass]="{ negative: !inTheGreen(unitsandgross.Total[0].PerDay_TotalGross[0])}">
+                                {{(unitsandgross.Total[0].PerDay_TotalGross[0] == 0 ? '-' :
+                                unitsandgross.Total[0].PerDay_TotalGross[0]
+                                |currency:'USD':'symbol':'1.0-0' )}}
+                            </td>
+                            <td id="DataBody2"
+                                [ngClass]="{ negative: !inTheGreen(unitsandgross.Total[0].MTD_TotalGross[0])}">
+                                {{(unitsandgross.Total[0].MTD_TotalGross[0] == 0 ? '-' :
+                                unitsandgross.Total[0].MTD_TotalGross[0]
+                                |currency:'USD':'symbol':'1.0-0' )}}
+                            </td>
+                            <td id="DataBody2"
+                                [ngClass]="{ negative: !inTheGreen(unitsandgross.Total[0].Pace_TotalGross[0])}">
+                                {{(unitsandgross.Total[0].Pace_TotalGross[0] == 0 ? '-' :
+                                unitsandgross.Total[0].Pace_TotalGross[0]
+                                |currency:'USD':'symbol':'1.0-0' )}}
+                            </td>
+                            <td id="DataBody2"
+                                [ngClass]="{ negative: !inTheGreen(unitsandgross.Total[0].Goal_TotalGross[0])}">
+                                {{(unitsandgross.Total[0].Goal_TotalGross[0] == 0 ? '-' :
+                                unitsandgross.Total[0].Goal_TotalGross[0]
+                                |currency:'USD':'symbol':'1.0-0' )}}
+                            </td>
+                            <td id="DataBody2"
+                                [ngClass]="{ negative: !inTheGreen(unitsandgross.Total[0].Pace_TotalGross[0]*1 - unitsandgross.Total[0].Goal_TotalGross[0]*1 )}">
+                                {{(unitsandgross.Total[0].Pace_TotalGross[0]*1 -
+                                unitsandgross.Total[0].Goal_TotalGross[0]*1 == 0 ? '-' :
+                                unitsandgross.Total[0].Pace_TotalGross[0]*1 -
+                                unitsandgross.Total[0].Goal_TotalGross[0]*1 |
+                                currency:'USD':'symbol':'1.0-0' )}}
+                            </td>
+
+                        </tr>
+                        <tr class="titleOdd">
+
+                            <td colspan="2">&nbsp;&nbsp;</td>
+                            <td id="DataBody2"
+                                [ngClass]="{ negative: !inTheGreen(unitsandgross.Today[0].MTD_TotalPVR[0])}">
+                                {{(unitsandgross.Today[0].MTD_TotalPVR[0] == 0 ? '-' :
+                                unitsandgross.Today[0].MTD_TotalPVR[0]
+                                |currency:'USD':'symbol':'1.0-0' )}}
+                            </td>
+                            <td id="DataBody2"
+                                [ngClass]="{ negative: !inTheGreen(unitsandgross.Total[0].PerDay_TotalPvr[0])}">
+                                {{(unitsandgross.Total[0].PerDay_TotalPvr[0] == 0 ? '-' :
+                                unitsandgross.Total[0].PerDay_TotalPvr[0]
+                                |currency:'USD':'symbol':'1.0-0' )}}
+                            </td>
+                            <td id="DataBody2"
+                                [ngClass]="{ negative: !inTheGreen(unitsandgross.Total[0].MTD_TotalPVR[0])}">
+                                {{(unitsandgross.Total[0].MTD_TotalPVR[0] == 0 ? '-' :
+                                unitsandgross.Total[0].MTD_TotalPVR[0]
+                                |currency:'USD':'symbol':'1.0-0' )}}
+                            </td>
+                            <td id="DataBody2"
+                                [ngClass]="{ negative: !inTheGreen(unitsandgross.Total[0].Pace_TotalPVR[0])}">
+                                {{(unitsandgross.Total[0].Pace_TotalPVR[0] == 0 ? '-' :
+                                unitsandgross.Total[0].Pace_TotalPVR[0]
+                                |currency:'USD':'symbol':'1.0-0' )}}
+                            </td>
+                            <td id="DataBody2"
+                                [ngClass]="{ negative: !inTheGreen(unitsandgross.Total[0].Goal_TotalPvr[0])}">
+                                {{(unitsandgross.Total[0].Goal_TotalPvr[0] == 0 ? '-' :
+                                unitsandgross.Total[0].Goal_TotalPvr[0]
+                                |currency:'USD':'symbol':'1.0-0' )}}
+                            </td>
+                            <td id="DataBody2"
+                                [ngClass]="{ negative: !inTheGreen(unitsandgross.Total[0].Pace_TotalPVR[0]*1 - unitsandgross.Total[0].Goal_TotalPvr[0]*1 )}">
+                                {{(unitsandgross.Total[0].Pace_TotalPVR[0]*1 - unitsandgross.Total[0].Goal_TotalPvr[0]*1
+                                == 0 ? '-' : unitsandgross.Total[0].Pace_TotalPVR[0]*1 -
+                                unitsandgross.Total[0].Goal_TotalPvr[0]*1 |
+                                currency:'USD':'symbol':'1.0-0' )}}
+
+                            </td>
+
+                        </tr>
+                    <tbody>
+                        <!-- <tbody *ngIf="NoData">
+                        <tr>
+                            <td colspan="11">No Records Found!!!</td>
+                        </tr>
+                    </tbody> -->
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

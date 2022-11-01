@@ -1,0 +1,319 @@
+<div class="container-fluid d-flex justify-content-center align-items-center">
+    <div class="report-controls-popup">
+      <!-- <div  style="border-radius:20px !important"> -->
+      <!-- class="scrollpopup" -->
+      <div>
+        <div class="header d-flex align-items-center">
+          <h5 class="title m-0 ms-2">
+            <img src="" alt=""> <span class="slash">//</span>REPORT CONTROLS
+          </h5>
+          <a type="button" class="close-btn ms-auto me-2" (click)="close()"><i class="fa-solid fa-xmark"></i> </a>
+        </div>
+        <div class="body">
+          <div class="container-fluid">
+            <div class="col-12 data-grouping">
+              <div class="row">
+                <div class="col-4" style="border-right: 1px solid #edf1f4;flex-wrap:inherit">
+                  <div class="col-12">
+                    <h5>Date Range</h5>
+                    <div class="col-12">
+                      <form class="row form-inline">
+                        <div class="col-12 form-group">
+                          <div class="input-group">
+                            <input #dpFromDate class="form-control" placeholder="mm/dd/yyyy" (click)="datepicker.toggle()"
+                              name="dpFromDate" [value]="formatter.format(fromDate)"
+                              (input)="fromDate = validateInput(fromDate, dpFromDate.value)">
+                            <span style="padding:.5rem">to</span>
+                            <input #dpToDate class="form-control" placeholder="mm/dd/yyyy" name="dpToDate"
+                              (click)="datepicker.toggle()" [value]="formatter.format(toDate)"
+                              (input)="toDate = validateInput(toDate, dpToDate.value)">
+                          </div>
+                          <div class="form-group hidden">
+                            <div class="input-group">
+                              <input name="datepicker" style="display: none;" class="form-control" ngbDatepicker
+                                #datepicker="ngbDatepicker" [autoClose]="'outside'" (dateSelect)="onDateSelection($event)"
+                                [maxDate]="maxDate" [displayMonths]="2" [dayTemplate]="t" outsideDays="hidden"
+                                [startDate]="fromDate!" tabindex="-1">
+                              <ng-template #t let-date let-focused="focused">
+                                <span class="custom-day" [class.focused]="focused" [class.range]="isRange(date)"
+                                  [class.faded]="isHovered(date) || isInside(date)" (mouseenter)="hoveredDate = date"
+                                  (mouseleave)="hoveredDate = null">
+                                  {{ date.day }}
+                                </span>
+                              </ng-template>
+                            </div>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="mt-3 mb-3">
+                      <h5>New / Used</h5>
+                      <button type="button" class="btn btn-primary grp-sml-btn" (click)="multipleorsingle('NU','New')"
+                        [ngClass]="{'bg-color':neworused.indexOf('New')>=0, 'bg-color-wt':neworused.indexOf('New')<0}">New</button>
+                      <button type="button" class="btn btn-primary grp-sml-btn" (click)="multipleorsingle('NU','Used')"
+                        [ngClass]="{'bg-color':neworused.indexOf('Used')>=0, 'bg-color-wt':neworused.indexOf('Used')<0}">Used</button>
+  
+                    </div>
+                  </div>
+                  <div class="col-12" style="border-bottom: 1px solid #edf1f4;">
+                    <div class="mt-3 mb-3">
+                      <h5>Reports Total</h5>
+                      <button type="button" class="btn btn-primary grp-sml-btn" (click)="multipleorsingle('TB','T')"
+                        [ngClass]="{'bg-color':toporbottom.indexOf('T')>=0, 'bg-color-wt':toporbottom.indexOf('T')<0}">Top</button>
+                      <button type="button" class="btn btn-primary grp-sml-btn" (click)="multipleorsingle('TB','B')"
+                        [ngClass]="{'bg-color':toporbottom.indexOf('B')>=0, 'bg-color-wt':toporbottom.indexOf('B')<0}">Bottom</button>
+                    </div>
+                  </div>
+                  <div class="col-12 mt-3">
+                    <div class="mb-1" *ngFor="let CT of Categories">
+                      <button type="button" class="btn btn-primary grp-btn" (click)="multipleorsingle('Cat',CT.Cat_Name)"
+                        [ngClass]="{'bg-color':section.indexOf(CT.Cat_Name)>=0, 'bg-color-wt':section.indexOf(CT.Cat_Name)<0}">{{CT.Cat_Name}}
+                        <span class="numberCircle"
+                          *ngIf="section.indexOf(CT.Cat_Name)<0 && CT.Cat_length>0"><span>{{CT.Cat_length}}</span></span></button>
+  
+                    </div>
+                  </div>
+  
+  
+                </div>
+                <div class="col-8">
+  
+                  <div *ngIf="section.indexOf('Groupings(s)')>=0">
+                    <div class="col-12 mb-4">
+                      <div class="row" style="flex-wrap:inherit">
+                        <div>
+                          <div class="row">
+                            <div class="col-lg-5" *ngFor="let grp of dataGrouping;let i=index">
+                              <div>
+                                <button type="button" class="btn btn-primary grp-btn"
+                                  (click)="multipleorsingle('Group',grp)"
+                                  [ngClass]="{'bg-color':selectedDataGrouping.indexOf(grp)>=0, 'bg-color-wt':selectedDataGrouping.indexOf(grp)<0}">{{grp.ARG_LABEL}}</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+  
+                  <!-- <div *ngIf="section.indexOf('Store(s)')>=0">
+                    <div class="col-12 mb-4">
+                      <div class="row" style="flex-wrap:inherit">
+                        <div>
+                          <div class="row">
+                            <div class="col-lg-5" *ngFor="let St of stores;let i=index">
+                              <div>
+                                <button type="button" class="btn btn-primary grp-btn"
+                                  (click)="multipleorsingle('Stores',St.AS_ID)"
+                                  [ngClass]="{'bg-color':selectedstorevalues.indexOf(St.AS_ID)>=0, 'bg-color-wt':selectedstorevalues.indexOf(St.AS_ID)<0}">{{St.DEALER_NAME}}</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div> -->
+                  <div class="str_scrl"  *ngIf="section.indexOf('Store(s)')>=0">
+                    <div class="col-4" >
+                     <div class="row" style="flex-wrap:inherit"> 
+                         <div  *ngFor="let str of stores;let i=index">  
+                             <div style="border-bottom: 1px solid #edf1f4;">
+                                <button type="button" class="btn btn-primary grp-btn mb-4" style="white-space:nowrap" (click)="storesSelection(str.Region,str)" [ngClass]="{'bg-color':selectedStoresRegions.indexOf(str.Region)>=0, 'bg-color-wt':selectedStoresRegions.indexOf(str.Region)<0}">{{str.Region}}</button>  
+                             </div>                      
+                            <div  class="mt-2 mb-4" style="max-height: 400px;overflow: auto;">
+                            <div *ngFor="let st of str.Stores;let j=index">
+                            <button type="button" class="btn btn-primary grp-btn"  style="white-space:nowrap"  [ngClass]="{'bg-color':st.status==true, 'bg-color-wt':st.status==false}" (click)="individualStores(st,i,str.Region)">{{st.AS_DEALERNAME}}</button>  
+                            </div>                
+                        </div>   
+                        </div>  
+                    </div>
+                    </div>
+                    </div>
+                    <!-- <div class="str_scrl"  *ngIf="section.indexOf('Store(s)')>=0">
+                        <div class="col-4" >
+                         <div class="row" style="flex-wrap:inherit"> 
+                             <div  *ngFor="let str of stores;let i=index">  
+                                 <div style="border-bottom: 1px solid #edf1f4;">
+                                    <button type="button" class="btn btn-primary grp-btn mb-4" style="white-space:nowrap" (click)="storesSelection(str.Region,str)" [ngClass]="{'bg-color':selectedStoresRegions.indexOf(str.Region)>=0, 'bg-color-wt':selectedStoresRegions.indexOf(str.Region)<0}">{{str.Region}}</button>  
+                                 </div>                      
+                                <div  class="mt-2 mb-4" style="max-height: 400px;overflow: auto;">
+                                <div *ngFor="let st of str.Stores;let j=index">
+                                <button type="button" class="btn btn-primary grp-btn"  style="white-space:nowrap"  [ngClass]="{'bg-color':st.status==true, 'bg-color-wt':st.status==false}" (click)="individualStores(st,i,str.Region)">{{st.AS_DEALERNAME}}</button>  
+                                </div>                
+                            </div>   
+                            </div>  
+                        </div>
+                        </div>
+                        </div> -->
+                        <!-- <div class="str_scrl"  *ngIf="section.indexOf('Store(s)')>=0">
+                            <div class="col-4" >
+                             <div class="row" style="flex-wrap:inherit"> 
+                                 <div  *ngFor="let str of stores;let i=index">  
+                                     <div style="border-bottom: 1px solid #edf1f4;">
+                                        <button type="button" class="btn btn-primary grp-btn mb-4" style="white-space:nowrap" (click)="storesSelection(str.Region,str)" [ngClass]="{'bg-color':selectedStoresRegions.indexOf(str.Region)>=0, 'bg-color-wt':selectedStoresRegions.indexOf(str.Region)<0}">{{str.Region}}</button>  
+                                     </div>                      
+                                    <div  class="mt-2 mb-4" style="max-height: 400px;overflow: auto;">
+                                    <div *ngFor="let st of str.Stores;let j=index">
+                                    <button type="button" class="btn btn-primary grp-btn"  style="white-space:nowrap"  [ngClass]="{'bg-color':st.status==true, 'bg-color-wt':st.status==false}" (click)="individualStores(st,i,str.Region)">{{st.AS_DEALERNAME}}</button>  
+                                    </div>                
+                                </div>   
+                                </div>  
+                            </div>
+                            </div>
+                            </div> -->
+                            <!-- <div class="str_scrl"  *ngIf="section.indexOf('Store(s)')>=0">
+                                <div class="col-4" >
+                                 <div class="row" style="flex-wrap:inherit"> 
+                                     <div  *ngFor="let str of stores;let i=index">  
+                                         <div style="border-bottom: 1px solid #edf1f4;">
+                                            <button type="button" class="btn btn-primary grp-btn mb-4" style="white-space:nowrap" (click)="storesSelection(str.Region,str)" [ngClass]="{'bg-color':selectedStoresRegions.indexOf(str.Region)>=0, 'bg-color-wt':selectedStoresRegions.indexOf(str.Region)<0}">{{str.Region}}</button>  
+                                         </div>                      
+                                        <div  class="mt-2 mb-4" style="max-height: 400px;overflow: auto;">
+                                        <div *ngFor="let st of str.Stores;let j=index">
+                                        <button type="button" class="btn btn-primary grp-btn"  style="white-space:nowrap"  [ngClass]="{'bg-color':st.status==true, 'bg-color-wt':st.status==false}" (click)="individualStores(st,i,str.Region)">{{st.AS_DEALERNAME}}</button>  
+                                        </div>                
+                                    </div>   
+                                    </div>  
+                                </div>
+                                </div>
+                                </div> -->
+                  <div *ngIf="section.indexOf('F&I Manager(s)')>=0">
+                    <div class="col-12 mb-4">
+                      <div class="row" style="flex-wrap:inherit">
+                        <div>
+                          <div class="row" style="max-height: 500px;overflow: auto;">
+                            <div class="col-lg-4" *ngFor="let FI of financeManager;let i=index">
+                              <div>
+                                <button type="button" class="btn btn-primary grp-btn"
+                                  (click)="multipleorsingle('FandI',FI.FiId)"
+                                  [ngClass]="{'bg-color':selectedFiManagersvalues.indexOf(FI.FiId)>=0, 'bg-color-wt':selectedFiManagersvalues.indexOf(FI.FiId)<0}">{{FI.FiName}}</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+  
+  
+                  <div *ngIf="section.indexOf('Sales Manager(s)')>=0">
+                    <div class="col-12 mb-4">
+                      <div class="row" style="flex-wrap:inherit">
+                        <div>
+                          <div class="row" style="max-height: 500px;overflow: auto;">
+                            <div class="col-lg-4" *ngFor="let SM of salesManagers;let i=index">
+                              <div>
+                                <button type="button" class="btn btn-primary grp-btn"
+                                  (click)="multipleorsingle('SM',SM.SmId)"
+                                  [ngClass]="{'bg-color':selectedSalesManagersvalues.indexOf(SM.SmId)>=0, 'bg-color-wt':selectedSalesManagersvalues.indexOf(SM.SmId)<0}">{{SM.SmName}}</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+  
+                  <div *ngIf="section.indexOf('Salesperson(s)')>=0">
+                    <div class="col-12 mb-4">
+                      <div class="row" style="flex-wrap:inherit">
+                        <div>
+                          <div class="row" style="max-height: 500px;overflow: auto;">
+                            <div class="col-lg-4" *ngFor="let SP of salesPersons;let i=index">
+                              <div>
+                                <button type="button" class="btn btn-primary grp-btn"
+                                  (click)="multipleorsingle('SP',SP.SPID)"
+                                  [ngClass]="{'bg-color':selectedSalespersonvalues.indexOf(SP.SPID)>=0, 'bg-color-wt':selectedSalespersonvalues.indexOf(SP.SPID)<0}">{{SP.SPName}}</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+  
+                  <div *ngIf="section.indexOf('Retail/Lease')>=0">
+                    <div class="col-4 mb-2">
+                      <button type="button" class="btn btn-primary grp-btn" (click)="multipleorsingle('RL','Retail')"
+                        [ngClass]="{'bg-color':retailorlease.indexOf('Retail')>=0, 'bg-color-wt':retailorlease.indexOf('Retail')<0}">Retail</button>
+                    </div>
+                    <div class="col-4 mb-2">
+                      <button type="button" class="btn btn-primary grp-btn" (click)="multipleorsingle('RL','Lease')"
+                        [ngClass]="{'bg-color':retailorlease.indexOf('Lease')>=0, 'bg-color-wt':retailorlease.indexOf('Lease')<0}">Lease</button>
+                    </div>
+                    <div class="col-4 mb-2">
+                      <button type="button" class="btn btn-primary grp-btn" (click)="multipleorsingle('RL','Wholesale')"
+                        [ngClass]="{'bg-color':retailorlease.indexOf('Wholesale')>=0, 'bg-color-wt':retailorlease.indexOf('Wholesale')<0}">Wholesale</button>
+                    </div>
+                    <div class="col-4 mb-2">
+                      <button type="button" class="btn btn-primary grp-btn " (click)="multipleorsingle('RL','Misc')"
+                        [ngClass]="{'bg-color':retailorlease.indexOf('Misc')>=0, 'bg-color-wt':retailorlease.indexOf('Misc')<0}">Misc.</button>
+                    </div>
+  
+                  </div>
+  
+  
+                  <div *ngIf="section.indexOf('Deal Status')>=0">
+                    <div class="col-4 mb-2">
+                      <button type="button" class="btn btn-primary grp-btn" (click)="multipleorsingle('DS','Delivered')"
+                        [ngClass]="{'bg-color':dealstatus.indexOf('Delivered')>=0, 'bg-color-wt':dealstatus.indexOf('Delivered')<0}">Delivered</button>
+                    </div>
+                    <div class="col-4 mb-2">
+                      <button type="button" class="btn btn-primary grp-btn" (click)="multipleorsingle('DS','Capped')"
+                        [ngClass]="{'bg-color':dealstatus.indexOf('Capped')>=0, 'bg-color-wt':dealstatus.indexOf('Capped')<0}">Capped</button>
+                    </div>
+                    <div class="col-4 mb-2">
+                      <button type="button" class="btn btn-primary grp-btn" (click)="multipleorsingle('DS','Finalized')"
+                        [ngClass]="{'bg-color':dealstatus.indexOf('Finalized')>=0, 'bg-color-wt':dealstatus.indexOf('Finalized')<0}">Finalized</button>
+                    </div>
+  
+                    <!-- </div> -->
+                  </div>
+  
+  
+                  <div *ngIf="section.indexOf('Target')>=0">
+                    <div class="col-4 mb-2">
+                      <button type="button" class="btn btn-primary grp-btn" (click)="multipleorsingle('ST','Y')"
+                        [ngClass]="{'bg-color':selecttarget.indexOf('Y')>=0, 'bg-color-wt':selecttarget.indexOf('Y')<0}">Prior
+                        Year Same Month</button>
+                    </div>
+                    <div class="col-4 mb-2">
+                      <button type="button" class="btn btn-primary grp-btn" (click)="multipleorsingle('ST','M')"
+                        [ngClass]="{'bg-color':selecttarget.indexOf('M')>=0, 'bg-color-wt':selecttarget.indexOf('M')<0}">Prior
+                        Month</button>
+                    </div>
+                    <div class="col-4 mb-2">
+                      <button type="button" class="btn btn-primary grp-btn" (click)="multipleorsingle('ST','F')"
+                        [ngClass]="{'bg-color':selecttarget.indexOf('F')>=0, 'bg-color-wt':selecttarget.indexOf('F')<0}">Forecast
+                        / Goal</button>
+                    </div>
+                    <div class="col-4 mb-2">
+                      <button type="button" class="btn btn-primary grp-btn" (click)="multipleorsingle('ST','C')"
+                        [ngClass]="{'bg-color':selecttarget.indexOf('C')>=0, 'bg-color-wt':selecttarget.indexOf('C')<0}">Comparision
+                        Group</button>
+                    </div>
+  
+                    <!-- </div> -->
+                  </div>
+  
+                </div>
+              </div>
+  
+  
+            </div>
+          </div>
+        </div>
+        <div class="footer">
+          <div class="col-12 d-flex justify-content-center">
+            <button type="button" class="btn btn-primary ms-1" (click)="close()">Save to Favorites</button> &nbsp;&nbsp;
+            <button type="button" class="btn btn-save me-1" (click)="viewreport()">Save</button>
+            <a class="cancel-txt" (click)="close()">Cancel</a>
+  
+          </div>
+        </div>
+        <!-- </div> -->
+      </div>
+    </div>
+  </div>

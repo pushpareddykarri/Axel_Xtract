@@ -1,0 +1,156 @@
+
+<div class="container-fluid d-flex justify-content-center align-items-center" >
+    <div class="report-controls-popup">
+        <div class="header d-flex align-items-center">
+            <h5 class="title m-0 ms-2">
+                <img src="" alt=""> <span class="slash">//</span>REPORT CONTROLS  
+            </h5>
+            <a  type="button" class="close-btn ms-auto me-2" (click)="close()"><i class="fa-solid fa-xmark"></i> </a>
+        </div>
+        <div class="body">
+            <div class="container-fluid">
+                <div class="col-12 ">
+                    <div class="row">
+                        <div class="col-4">
+                            <h5>Date </h5>
+                            <div class="row mb-4">
+                                <div class="col-sm-5 box">
+                                    <form class="row form-inline">                         
+                                        <div class="col-12 form-group">
+                                            <div class="input-group">
+                                            <input #dpFromDate 
+                                                   class="form-control" placeholder="mm/dd/yyyy"
+                                                   name="dpFromDate">
+                                          </div>
+                                        </div>                                                                          
+                                    </form>
+                                </div> 
+                                <span class="col-sm-2 pt-2" style="font-size: 0.7rem;text-align: center;">to</span>
+                                <div class="col-sm-5 box">
+                                    <form class="row form-inline">                         
+                                        <div class="col-12 form-group">
+                                            <div class="input-group">
+                                            <input #dpFromDate 
+                                                   class="form-control" placeholder="mm/dd/yyyy"
+                                                   name="dpFromDate">
+                                          </div>
+                                        </div>                                                                          
+                                    </form>
+                                </div> 
+                            </div>
+                            <h5>VS Target</h5>
+                            <div class="row mb-4">
+                                <div class="col-5 box">
+                                    <div class="col-12 form-group">
+                                        <button type="button" class="btn btn-primary grp-btn clrNul hs-btn" (click)="HideAndShow('H')">
+                                            <span class="text-align-center">Hide</span>
+                                         </button>
+                                    </div>                                   
+                                </div>
+                                <div class="col-5 box">
+                                    <div class="col-12 form-group">
+                                        <button type="button" class="btn btn-primary grp-btn clrNul hs-btn" (click)="HideAndShow('M')">
+                                            <span class="text-align-center ">Show</span>
+                                         </button>
+                                    </div>                                    
+                                </div>
+                            </div>        
+                        </div>
+                        <div class="col-8">
+                            <div class="row">   
+                              <div class="col-6">                                
+                                    <h5>Select Store</h5>
+                                    <button type="button" class="btn btn-primary grp-btn clrNul">
+                                       <span class="pull-left">Select All</span>
+                                    </button>
+                                    <button type="button" class="btn btn-primary grp-btn">
+                                       <span class="pull-left">Northwest Region</span>
+                                    </button>
+                                      <div class="pullLeft">
+                                            <button type="button" class="btn btn-primary grp-btn">
+                                                <span class="pull-left"> Nissan of Averly</span>
+                                            </button>
+                                            <button type="button" class="btn btn-primary grp-btn">
+                                                <span class="pull-left"> Nissan of Seattle</span>
+                                            </button>
+                                            <button type="button" class="btn btn-primary grp-btn">
+                                                <span class="pull-left">Portland Toyota</span>
+                                            </button>
+                                      </div>
+                                    <button type="button" class="btn btn-primary grp-btn clrNul">
+                                       <span class="pull-left">Southwestern Region</span>
+                                    </button>
+                                    <div class="pullLeft">
+                                        <button type="button" class="btn btn-primary grp-btn clrNul">
+                                            <span class="pull-left"> Nissan of Donners</span>
+                                        </button>
+                                        <button type="button" class="btn btn-primary grp-btn">
+                                            <span class="pull-left"> Scottsdale Audi</span>
+                                        </button>
+                                        <button type="button" class="btn btn-primary grp-btn">
+                                            <span class="pull-left">Oceanside Honda</span>
+                                        </button>
+                                        <button type="button" class="btn btn-primary grp-btn clrNul">
+                                            <span class="pull-left">BMW of Chandler</span>
+                                        </button>
+                                    </div>
+                                    <button type="button" class="btn btn-primary grp-btn">
+                                        <span class="pull-left">Midwest Region</span>
+                                    </button>
+                                    <div class="pullLeft">
+                                        <button type="button" class="btn btn-primary grp-btn">
+                                            <span class="pull-left"> Johnstone Ford</span>
+                                        </button>
+                                        <button type="button" class="btn btn-primary grp-btn">
+                                            <span class="pull-left"> Albertson Honda</span>
+                                        </button>
+                                        <button type="button" class="btn btn-primary grp-btn">
+                                            <span class="pull-left"> Smithson Toyota</span>
+                                        </button>
+                                    </div>
+                                </div> 
+                                <div class="col-6 mt-4">
+                                    <button type="button" class="btn btn-primary grp-btn clrNul">
+                                        <span class="pull-left">20 Group Stores</span>
+                                    </button>
+                                    <div class="pullLeft">
+                                        <button type="button" class="btn btn-primary grp-btn clrNul">
+                                            <span class="pull-left"> Mercyville Mercedes Benz</span>
+                                        </button>
+                                        <button type="button" class="btn btn-primary grp-btn clrNul">
+                                            <span class="pull-left"> Growley Chevrolet</span>
+                                        </button>
+                                        <button type="button" class="btn btn-primary grp-btn clrNul">
+                                            <span class="pull-left"> Jefferson Ford</span>
+                                        </button>
+                                        <button type="button" class="btn btn-primary grp-btn clrNul">
+                                            <span class="pull-left"> Emmerson Volvo</span>
+                                        </button>
+                                        <button type="button" class="btn btn-primary grp-btn clrNul">
+                                            <span class="pull-left"> Launch KIA</span>
+                                        </button>
+                                        <button type="button" class="btn btn-primary grp-btn clrNul">
+                                            <span class="pull-left"> Wilsonville Dodge RAM</span>
+                                        </button>
+
+                                    </div>
+                                </div>     
+                            </div>
+                        </div>           
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="col-12 d-flex justify-content-center">
+                <button type="button" class="btn btn-primary me-1" (click)="viewreport()">View Report</button>
+                <button type="button" class="btn btn-primary ms-1"  (click)="save()" style="opacity: 0.2;">Save to Favorites</button>
+                <a  class="cancel-txt" (click)="close()">Cancel</a>
+              
+            </div>
+        </div>
+     </div>
+</div>
+    
+  
+  

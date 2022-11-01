@@ -1,0 +1,135 @@
+
+<div class="container-fluid d-flex justify-content-center align-items-center">
+    <div class="menu-popup">
+        <div class="header d-flex align-items-center">
+            <h5 class="title m-0 ms-2">
+                <img src="" alt=""> <span class="slash">//</span>MENU
+            </h5>
+            <a (click)="close()" type="button" class="close-btn ms-auto me-2"><i class="fa-solid fa-xmark"></i> </a>
+        </div>
+        <div class="body">
+            <div class="container-fluid">
+            <div class="col-12 menu-list">
+                <div class="row">
+                    <div class="col-3">
+                          <div class="list-group list-group-flush">
+                            <div class="list-group-item list-group-item-action active">
+                              Dashboard
+                            </div>
+                            <div class="list-group-item">Forecast Reports DMS</div>
+                            <div class="list-group-item">GM / Dealer Principal</div>
+                            <div class="list-group-item">Composite Dashboard</div>
+                            <div class="list-group-item">Sales Management</div>
+                            <div class="list-group-item">Fixed Operations Management</div>
+                          </div>
+
+                          <div class="list-group list-group-flush mt-5">
+                            <div class="list-group-item list-group-item-action active">
+                              Accounting
+                            </div>
+                            <div class="list-group-item" (click)="navigate('fs')" style="color: black;">Financial Summary</div>
+                            <div class="list-group-item">Income Statement</div>
+                            <!-- <div class="list-group-item" (click)="navigate('bc')" style="color: black;">Balance Sheet</div> -->
+                            <div class="list-group-item">Balance Sheet</div>
+                            <div class="list-group-item">Cash Flow / Cash Position</div>
+                            <!-- <div class="list-group-item" (click)="navigate('sh')" style="color: black;">Schedules / Managed Accounts</div> -->
+                            <div class="list-group-item">Schedules / Managed Accounts</div>
+                            <div class="list-group-item" (click)="navigate('am')" style="color: black;">Chart of Accounts Mapping</div>
+                            <!-- <div class="list-group-item" (click)="navigate('fr')" style="color: black;">Floorplan Reconciliation</div> -->
+                            <div class="list-group-item">Floorplan Reconciliation</div>
+                            <div class="list-group-item">Sales Tax</div>
+                            <div class="list-group-item">Expense Analysis</div>
+                            <div class="list-group-item">Wage Analysis</div>
+                            <div class="list-group-item">Productivity Analysis</div>
+                            <div class="list-group-item">Advertising Analysis</div>
+                          </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="list-group list-group-flush">
+                            <div class="list-group-item list-group-item-action active">
+                              Sales
+                            </div>
+                            <div class="list-group-item" (click)="navigate('sa')" style="color: black;">Sales Gross</div>
+                            <!-- <div class="list-group-item" (click)="navigate('sc')" style="color: black;">Conversion Report</div> -->
+                            <div class="list-group-item">Conversion Report</div>
+                            <div class="list-group-item">Opportunity Report</div>
+                            <div class="list-group-item">Contracts in Transit</div>
+                            <!-- <div class="list-group-item" (click)="navigate('slar')" style="color: black;">Sales to Accounting Reconciliation</div> -->
+                            <div class="list-group-item">Sales to Accounting Reconciliation</div>
+                            <div class="list-group-item">Vehicle Inventory Report</div>
+                            <div class="list-group-item">Sales Operation Funnel</div>
+                            <div class="list-group-item">Individual Dashboard Rankings</div>
+                            <div class="list-group-item">Pricing Analysis</div>
+                            <!-- <div class="list-group-item" (click)="navigate('ID')" style="color: black;">Inventory Dashboard</div> -->
+                            <div class="list-group-item">Inventory Dashboard</div>
+                            <div class="list-group-item">Used Inventory Report</div>
+                            <div class="list-group-item">Used Vehicle Reserve</div>
+                            <div class="list-group-item">Reconditioning Report</div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="list-group list-group-flush">
+                            <div class="list-group-item list-group-item-action active">
+                               Service And Body Shop
+                            </div>
+                            <div class="list-group-item" (click)="navigate('se')" style="color: black;">Service Gross</div>
+                            <div class="list-group-item">Open RO Report / WIP</div>
+                            <div class="list-group-item">Conversion Report</div>
+                            <div class="list-group-item">Service Sales Report</div>
+                            <div class="list-group-item">Technician Proficiency Report</div>
+                            <div class="list-group-item">Fixed Operations Funnel</div>
+                            <!-- <div class="list-group-item" (click)="navigate('sar')" style="color: black;">Service to Accounting Reconciliation</div> -->
+                            <div class="list-group-item">Service to Accounting Reconciliation</div>
+                            <div class="list-group-item">Individual Dashboard</div>
+                            <div class="list-group-item">Rankings</div>
+                            <div class="list-group-item">Customer Load Balancing</div>
+                            <div class="list-group-item">Op Code Mapping</div>
+                            <div class="list-group-item">Loaner Car Report</div>
+                        </div>
+
+                        <div class="list-group list-group-flush mt-5">
+                            <div class="list-group-item list-group-item-action active">
+                                Other
+                            </div>
+                            <div class="list-group-item">Manage Your Targets</div>
+                            <div class="list-group-item">View Employee Report Usage</div>
+                            <div class="list-group-item">Access Your Data Directly (AXEL Data Hub)</div>
+                            <div class="list-group-item">Invite Dealer to Join Your Comparison Group</div>
+                            <div class="list-group-item">Schedule an Email Report</div>
+                            <div class="list-group-item">View Latest Data Updates</div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="list-group list-group-flush">
+                        <div class="list-group-item list-group-item-action active">
+                            Parts
+                        </div>
+                        <div class="list-group-item" (click)="navigate('PG')" style="color: black;">Parts Gross</div>
+                        <div class="list-group-item">Parts Inventory / Aging Report</div>
+                        <div class="list-group-item">Special Order Parts</div>
+                        <div class="list-group-item">Parts Reconciliation</div>
+                        <div class="list-group-item">Ranking</div>
+                        <!-- <div class="list-group-item" (click)="navigate('par')" style="color: black;">Parts to Accounting Reconciliation</div> -->
+                        <div class="list-group-item">Parts to Accounting Reconciliation</div>
+                        <div class="list-group-item">Individual Dashboard</div>
+                     </div>
+
+                     <div class="list-group list-group-flush mt-5">
+                        <div class="list-group-item list-group-item-action active">
+                            Admin
+                        </div>
+                        <div class="list-group-item">Users</div>
+                        <div class="list-group-item">Stores</div>
+                        <div class="list-group-item" (click)="navigate('ar')" style="color: black;">Roles</div>
+                        <div class="list-group-item" (click)="navigate('jt')" style="color: black;">Job Titles</div>
+                        <div class="list-group-item" (click)="navigate('ms')" style="color: black;">Modules</div>
+                        <div class="list-group-item" (click)="navigate('ps')" style="color: black;">Permissions</div>
+                     </div>
+                    </div>
+
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>

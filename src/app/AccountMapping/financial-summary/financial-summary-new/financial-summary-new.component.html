@@ -1,0 +1,303 @@
+<ngx-spinner  bdColor="rgba(51,51,51,0.8)"  size="medium"  color="white"  type="ball-fussion">
+    <p style="font-size: 20px; color: white">Loading...</p>
+  </ngx-spinner>
+
+<div class="container-fluid pt-1">
+   
+    <div class="col-8" style="width: 100%;">
+        <div class="d-flex justify-content-center">
+            <div class="gross-tbl table-responsive">
+                <table>
+                <thead>
+                    <tr class="SGtitle" style="background-color: #2d91f1;">
+                        <!-- <th rowspan="1">&nbsp;</th>
+                        <th colspan="5" style=" color: #000; text-align: center !important; background-color: #fff; border-right: 2px solid #e0e1e2;"></th>
+                        <th colspan="2" style=" color: #000; text-align: center !important; background-color: #fff; border-right: 2px solid #e0e1e2;"></th>
+                        <th colspan="5" style=" color: #000; text-align: center !important; background-color: #fff; border-right: 2px solid #e0e1e2;"></th> -->
+                    </tr>
+                    <tr class="SGtitle">
+                        <th>&nbsp;</th>
+
+                        <th>{{PresentMonth |date:'MMMM yyyy'}}</th>
+                        <th class="trgt">Budget</th>
+                        <th class="trgt">Variance</th>
+                        <th>{{LastYearMonth |date:'MMMM yyyy'}}</th>                        
+                        <th class="trgt">Variance</th>
+                        <th>{{LastMonth | date:'MMMM yyyy'}}</th>
+                        <th class="trgt">Variance</th>
+                        <th>{{PresentMonth| date:'yyyy'}}</th>
+                        <th class="trgt">Budget</th>
+                        <th class="trgt">Variance</th>
+                        <th>{{LastYearMonth| date:'yyyy'}}</th>
+                        <th class="trgt">Variance</th>
+                    </tr>
+                </thead>
+                <tbody >
+                    <tr class="title">
+                        <td>VARIABLE OPERATIONS</td>
+                
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="sub-title"  *ngFor="let data of FSData.slice(0,3)" [ngClass]="{'maintitle': data.FS_Symbol == '2'}">
+                        <td>{{data.LABLE1}}</td>
+                
+                        <td (click)="openMenu(data,PrsntDate)" [ngClass]="{ negative: !inTheGreen(data.MTD)}" style="cursor: pointer;">
+                              <span *ngIf="data.LABLE1.lastIndexOf('%') <= 0">{{ data.MTD == 0 || data.MTD == null ? '-' : data.MTD | number }}</span>
+                              <span *ngIf="data.LABLE1.lastIndexOf('%') > 0">{{ data.MTD == 0 || data.MTD == null ? '-' : data.MTD}}<span *ngIf="data.MTD!= '0' && data.MTD!= null">%</span></span>                              
+                        </td>
+                        <td [ngClass]="{ negative: !inTheGreen(data.BUDGET)}">
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') <= 0">{{ data.BUDGET == 0 || data.BUDGET == null ? '-' : data.BUDGET | number}}</span>
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') > 0">{{ data.BUDGET == 0 || data.BUDGET == null ? '-' : data.BUDGET }}<span *ngIf="data.BUDGET!= '0' && data.BUDGET!= null">%</span></span>                          
+                        </td>
+                        <td [ngClass]="{ negative: !inTheGreen(data.VARIANCE)}">
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') <= 0">{{ data.VARIANCE == 0 || data.VARIANCE == null ? '-' : data.VARIANCE | number}}</span>
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') > 0">{{ data.VARIANCE == 0 || data.VARIANCE == null ? '-' : data.VARIANCE}}<span *ngIf="data.VARIANCE!= '0' && data.VARIANCE!= null">%</span></span>
+                        </td>
+                        <td (click)="openMenu(data,LYMdate)" [ngClass]="{ negative: !inTheGreen(data.LMY_MTD)}" style="cursor: pointer;">
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') <= 0">{{ data.LMY_MTD == 0 || data.LMY_MTD == null ? '-' : data.LMY_MTD | number}}</span>
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') > 0">{{ data.LMY_MTD == 0 || data.LMY_MTD == null ? '-' : data.LMY_MTD}}<span *ngIf="data.LMY_MTD!= '0' && data.LMY_MTD!= null">%</span></span>
+                        </td>                        
+                        <td [ngClass]="{ negative: !inTheGreen(data.LMY_VARIANCE)}">
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') <= 0">{{ data.LMY_VARIANCE == 0 || data.LMY_VARIANCE == null ? '-' : data.LMY_VARIANCE | number}}</span>
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') > 0">{{ data.LMY_VARIANCE == 0 || data.LMY_VARIANCE == null ? '-' : data.LMY_VARIANCE}}<span *ngIf="data.LMY_VARIANCE!= '0' && data.LMY_VARIANCE!= null">%</span></span>
+                        </td>
+                        <td [ngClass]="{ negative: !inTheGreen(data.LM_MTD)}">
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') <= 0">{{ data.LM_MTD == 0 || data.LM_MTD == null ? '-' : data.LM_MTD | number}}</span>
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') > 0">{{ data.LM_MTD == 0 || data.LM_MTD == null ? '-' : data.LM_MTD}}<span *ngIf="data.LM_MTD!= '0' && data.LM_MTD!= null">%</span></span>
+                        </td>
+                        <td [ngClass]="{ negative: !inTheGreen(data.LM_VARIANCE)}">
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') <= 0">{{ data.LM_VARIANCE == 0 || data.LM_VARIANCE == null ? '-' : data.LM_VARIANCE | number}}</span>
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') > 0">{{ data.LM_VARIANCE == 0 || data.LM_VARIANCE == null ? '-' : data.LM_VARIANCE}}<span *ngIf="data.LM_VARIANCE!= '0' && data.LM_VARIANCE!= null">%</span></span>
+                        </td>
+                        <td [ngClass]="{ negative: !inTheGreen(data.YTD)}">
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') <= 0">{{ data.YTD == 0 || data.YTD == null ? '-' : data.YTD | number}}</span>
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') > 0">{{ data.YTD == 0 || data.YTD == null ? '-' : data.YTD}}<span *ngIf="data.YTD!= '0' && data.YTD!= null">%</span></span>
+                        </td>
+                        <td [ngClass]="{ negative: !inTheGreen(data.CY_BUDGET)}">
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') <= 0">{{ data.CY_BUDGET == 0 || data.CY_BUDGET == null ? '-' : data.CY_BUDGET | number}}</span>
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') > 0">{{ data.CY_BUDGET == 0 || data.CY_BUDGET == null ? '-' : data.CY_BUDGET}}<span *ngIf="data.CY_BUDGET!= '0' && data.CY_BUDGET!= null">%</span></span>
+                        </td>
+                        <td [ngClass]="{ negative: !inTheGreen(data.CY_VARIANCE)}">
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') <= 0">{{ data.CY_VARIANCE == 0 || data.CY_VARIANCE == null ? '-' : data.CY_VARIANCE | number}}</span>
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') > 0">{{ data.CY_VARIANCE == 0 || data.CY_VARIANCE == null ? '-' : data.CY_VARIANCE}}<span *ngIf="data.CY_VARIANCE!= '0' && data.CY_VARIANCE!= null">%</span></span>
+                        </td>
+                        <td [ngClass]="{ negative: !inTheGreen(data.LY_YTD)}">
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') <= 0">{{ data.LY_YTD == 0 || data.LY_YTD == null ? '-' : data.LY_YTD | number}}</span>
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') > 0">{{ data.LY_YTD == 0 || data.LY_YTD == null ? '-' : data.LY_YTD}}<span *ngIf="data.LY_YTD!= '0' && data.LY_YTD!= null">%</span></span>
+                        </td>
+                        <td [ngClass]="{ negative: !inTheGreen(data.LY_VARIANCE)}">
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') <= 0">{{ data.LY_VARIANCE == 0 || data.LY_VARIANCE == null ? '-' : data.LY_VARIANCE | number}}</span>
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') > 0">{{ data.LY_VARIANCE == 0 || data.LY_VARIANCE == null ? '-' : data.LY_VARIANCE}}<span *ngIf="data.LY_VARIANCE!= '0' && data.LY_VARIANCE!= null">%</span></span>
+                        </td>                                                             
+                    </tr>
+                    <tr class="sub-title"  *ngFor="let data of FSData.slice(3,9)" [ngClass]="{'maintitle': data.FS_Symbol == '2'}">
+                        <td>{{data.LABLE1}}</td>
+                
+                        <td (click)="openMenu(data,PrsntDate)" [ngClass]="{ negative: !inTheGreen(data.MTD)}" style="cursor: pointer;">
+                              <span *ngIf="data.LABLE1.lastIndexOf('%') <= 0">{{ data.MTD == 0 || data.MTD == null ? '-' : data.MTD | currency: 'USD':'symbol':'1.0-0'}}</span>
+                              <span *ngIf="data.LABLE1.lastIndexOf('%') > 0">{{ data.MTD == 0 || data.MTD == null ? '-' : data.MTD}}<span *ngIf="data.MTD!= '0' && data.MTD!= null">%</span></span>                              
+                        </td>
+                        <td [ngClass]="{ negative: !inTheGreen(data.BUDGET)}">
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') <= 0">{{ data.BUDGET == 0 || data.BUDGET == null ? '-' : data.BUDGET | currency: 'USD':'symbol':'1.0-0'}}</span>
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') > 0">{{ data.BUDGET == 0 || data.BUDGET == null ? '-' : data.BUDGET }}<span *ngIf="data.BUDGET!= '0' && data.BUDGET!= null">%</span></span>                          
+                        </td>
+                        <td [ngClass]="{ negative: !inTheGreen(data.VARIANCE)}">
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') <= 0">{{ data.VARIANCE == 0 || data.VARIANCE == null ? '-' : data.VARIANCE | currency: 'USD':'symbol':'1.0-0'}}</span>
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') > 0">{{ data.VARIANCE == 0 || data.VARIANCE == null ? '-' : data.VARIANCE}}<span *ngIf="data.VARIANCE!= '0' && data.VARIANCE!= null">%</span></span>
+                        </td>
+                        <td (click)="openMenu(data,LYMdate)" [ngClass]="{ negative: !inTheGreen(data.LMY_MTD)}" style="cursor: pointer;">
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') <= 0">{{ data.LMY_MTD == 0 || data.LMY_MTD == null ? '-' : data.LMY_MTD | currency: 'USD':'symbol':'1.0-0'}}</span>
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') > 0">{{ data.LMY_MTD == 0 || data.LMY_MTD == null ? '-' : data.LMY_MTD}}<span *ngIf="data.LMY_MTD!= '0' && data.LMY_MTD!= null">%</span></span>
+                        </td>                        
+                        <td [ngClass]="{ negative: !inTheGreen(data.LMY_VARIANCE)}">
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') <= 0">{{ data.LMY_VARIANCE == 0 || data.LMY_VARIANCE == null ? '-' : data.LMY_VARIANCE | currency: 'USD':'symbol':'1.0-0'}}</span>
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') > 0">{{ data.LMY_VARIANCE == 0 || data.LMY_VARIANCE == null ? '-' : data.LMY_VARIANCE}}<span *ngIf="data.LMY_VARIANCE!= '0' && data.LMY_VARIANCE!= null">%</span></span>
+                        </td>
+                        <td [ngClass]="{ negative: !inTheGreen(data.LM_MTD)}">
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') <= 0">{{ data.LM_MTD == 0 || data.LM_MTD == null ? '-' : data.LM_MTD | currency: 'USD':'symbol':'1.0-0'}}</span>
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') > 0">{{ data.LM_MTD == 0 || data.LM_MTD == null ? '-' : data.LM_MTD}}<span *ngIf="data.LM_MTD!= '0' && data.LM_MTD!= null">%</span></span>
+                        </td>
+                        <td [ngClass]="{ negative: !inTheGreen(data.LM_VARIANCE)}">
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') <= 0">{{ data.LM_VARIANCE == 0 || data.LM_VARIANCE == null ? '-' : data.LM_VARIANCE | currency: 'USD':'symbol':'1.0-0'}}</span>
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') > 0">{{ data.LM_VARIANCE == 0 || data.LM_VARIANCE == null ? '-' : data.LM_VARIANCE}}<span *ngIf="data.LM_VARIANCE!= '0' && data.LM_VARIANCE!= null">%</span></span>
+                        </td>
+                        <td [ngClass]="{ negative: !inTheGreen(data.YTD)}">
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') <= 0">{{ data.YTD == 0 || data.YTD == null ? '-' : data.YTD | currency: 'USD':'symbol':'1.0-0'}}</span>
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') > 0">{{ data.YTD == 0 || data.YTD == null ? '-' : data.YTD}}<span *ngIf="data.YTD!= '0' && data.YTD!= null">%</span></span>
+                        </td>
+                        <td [ngClass]="{ negative: !inTheGreen(data.CY_BUDGET)}">
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') <= 0">{{ data.CY_BUDGET == 0 || data.CY_BUDGET == null ? '-' : data.CY_BUDGET | currency: 'USD':'symbol':'1.0-0'}}</span>
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') > 0">{{ data.CY_BUDGET == 0 || data.CY_BUDGET == null ? '-' : data.CY_BUDGET}}<span *ngIf="data.CY_BUDGET!= '0' && data.CY_BUDGET!= null">%</span></span>
+                        </td>
+                        <td [ngClass]="{ negative: !inTheGreen(data.CY_VARIANCE)}">
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') <= 0">{{ data.CY_VARIANCE == 0 || data.CY_VARIANCE == null ? '-' : data.CY_VARIANCE | currency: 'USD':'symbol':'1.0-0'}}</span>
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') > 0">{{ data.CY_VARIANCE == 0 || data.CY_VARIANCE == null ? '-' : data.CY_VARIANCE}}<span *ngIf="data.CY_VARIANCE!= '0' && data.CY_VARIANCE!= null">%</span></span>
+                        </td>
+                        <td [ngClass]="{ negative: !inTheGreen(data.LY_YTD)}">
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') <= 0">{{ data.LY_YTD == 0 || data.LY_YTD == null ? '-' : data.LY_YTD | currency: 'USD':'symbol':'1.0-0'}}</span>
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') > 0">{{ data.LY_YTD == 0 || data.LY_YTD == null ? '-' : data.LY_YTD}}<span *ngIf="data.LY_YTD!= '0' && data.LY_YTD!= null">%</span></span>
+                        </td>
+                        <td [ngClass]="{ negative: !inTheGreen(data.LY_VARIANCE)}">
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') <= 0">{{ data.LY_VARIANCE == 0 || data.LY_VARIANCE == null ? '-' : data.LY_VARIANCE | currency: 'USD':'symbol':'1.0-0'}}</span>
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') > 0">{{ data.LY_VARIANCE == 0 || data.LY_VARIANCE == null ? '-' : data.LY_VARIANCE}}<span *ngIf="data.LY_VARIANCE!= '0' && data.LY_VARIANCE!= null">%</span></span>
+                        </td>                                                             
+                    </tr>
+                    <tr class="title">
+                        <td>FIXED OPERATIONS</td>
+                
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="sub-title" *ngFor="let data of FSData.slice(9,19)" [ngClass]="{'maintitle': data.FS_Symbol == '2'}">
+                        <td>{{data.LABLE1}}</td>
+                
+                        <td (click)="openMenu(data,PrsntDate)" [ngClass]="{ negative: !inTheGreen(data.MTD)}" style="cursor: pointer;">
+                              <span *ngIf="data.LABLE1.lastIndexOf('%') <= 0">{{ data.MTD == 0 || data.MTD == null ? '-' : data.MTD | currency: 'USD':'symbol':'1.0-0'}}</span>
+                              <span *ngIf="data.LABLE1.lastIndexOf('%') > 0">{{ data.MTD == 0 || data.MTD == null ? '-' : data.MTD}}<span *ngIf="data.MTD!= '0' && data.MTD!= null">%</span></span>                              
+                        </td>
+                        <td [ngClass]="{ negative: !inTheGreen(data.BUDGET)}">
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') <= 0">{{ data.BUDGET == 0 || data.BUDGET == null ? '-' : data.BUDGET | currency: 'USD':'symbol':'1.0-0'}}</span>
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') > 0">{{ data.BUDGET == 0 || data.BUDGET == null ? '-' : data.BUDGET }}<span *ngIf="data.BUDGET!= '0' && data.BUDGET!= null">%</span></span>                          
+                        </td>
+                        <td [ngClass]="{ negative: !inTheGreen(data.VARIANCE)}">
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') <= 0">{{ data.VARIANCE == 0 || data.VARIANCE == null ? '-' : data.VARIANCE | currency: 'USD':'symbol':'1.0-0'}}</span>
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') > 0">{{ data.VARIANCE == 0 || data.VARIANCE == null ? '-' : data.VARIANCE}}<span *ngIf="data.VARIANCE!= '0' && data.VARIANCE!= null">%</span></span>
+                        </td>
+                        <td (click)="openMenu(data,LYMdate)" [ngClass]="{ negative: !inTheGreen(data.LMY_MTD)}" style="cursor: pointer;">
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') <= 0">{{ data.LMY_MTD == 0 || data.LMY_MTD == null ? '-' : data.LMY_MTD | currency: 'USD':'symbol':'1.0-0'}}</span>
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') > 0">{{ data.LMY_MTD == 0 || data.LMY_MTD == null ? '-' : data.LMY_MTD}}<span *ngIf="data.LMY_MTD!= '0' && data.LMY_MTD!= null">%</span></span>
+                        </td>                        
+                        <td [ngClass]="{ negative: !inTheGreen(data.LMY_VARIANCE)}">
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') <= 0">{{ data.LMY_VARIANCE == 0 || data.LMY_VARIANCE == null ? '-' : data.LMY_VARIANCE | currency: 'USD':'symbol':'1.0-0'}}</span>
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') > 0">{{ data.LMY_VARIANCE == 0 || data.LMY_VARIANCE == null ? '-' : data.LMY_VARIANCE}}<span *ngIf="data.LMY_VARIANCE!= '0' && data.LMY_VARIANCE!= null">%</span></span>
+                        </td>
+                        <td [ngClass]="{ negative: !inTheGreen(data.LM_MTD)}">
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') <= 0">{{ data.LM_MTD == 0 || data.LM_MTD == null ? '-' : data.LM_MTD | currency: 'USD':'symbol':'1.0-0'}}</span>
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') > 0">{{ data.LM_MTD == 0 || data.LM_MTD == null ? '-' : data.LM_MTD}}<span *ngIf="data.LM_MTD!= '0' && data.LM_MTD!= null">%</span></span>
+                        </td>
+                        <td [ngClass]="{ negative: !inTheGreen(data.LM_VARIANCE)}">
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') <= 0">{{ data.LM_VARIANCE == 0 || data.LM_VARIANCE == null ? '-' : data.LM_VARIANCE | currency: 'USD':'symbol':'1.0-0'}}</span>
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') > 0">{{ data.LM_VARIANCE == 0 || data.LM_VARIANCE == null ? '-' : data.LM_VARIANCE}}<span *ngIf="data.LM_VARIANCE!= '0' && data.LM_VARIANCE!= null">%</span></span>
+                        </td>
+                        <td [ngClass]="{ negative: !inTheGreen(data.YTD)}">
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') <= 0">{{ data.YTD == 0 || data.YTD == null ? '-' : data.YTD | currency: 'USD':'symbol':'1.0-0'}}</span>
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') > 0">{{ data.YTD == 0 || data.YTD == null ? '-' : data.YTD}}<span *ngIf="data.YTD!= '0' && data.YTD!= null">%</span></span>
+                        </td>
+                        <td [ngClass]="{ negative: !inTheGreen(data.CY_BUDGET)}">
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') <= 0">{{ data.CY_BUDGET == 0 || data.CY_BUDGET == null ? '-' : data.CY_BUDGET | currency: 'USD':'symbol':'1.0-0'}}</span>
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') > 0">{{ data.CY_BUDGET == 0 || data.CY_BUDGET == null ? '-' : data.CY_BUDGET}}<span *ngIf="data.CY_BUDGET!= '0' && data.CY_BUDGET!= null">%</span></span>
+                        </td>
+                        <td [ngClass]="{ negative: !inTheGreen(data.CY_VARIANCE)}">
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') <= 0">{{ data.CY_VARIANCE == 0 || data.CY_VARIANCE == null ? '-' : data.CY_VARIANCE | currency: 'USD':'symbol':'1.0-0'}}</span>
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') > 0">{{ data.CY_VARIANCE == 0 || data.CY_VARIANCE == null ? '-' : data.CY_VARIANCE}}<span *ngIf="data.CY_VARIANCE!= '0' && data.CY_VARIANCE!= null">%</span></span>
+                        </td>
+                        <td [ngClass]="{ negative: !inTheGreen(data.LY_YTD)}">
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') <= 0">{{ data.LY_YTD == 0 || data.LY_YTD == null ? '-' : data.LY_YTD | currency: 'USD':'symbol':'1.0-0'}}</span>
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') > 0">{{ data.LY_YTD == 0 || data.LY_YTD == null ? '-' : data.LY_YTD}}<span *ngIf="data.LY_YTD!= '0' && data.LY_YTD!= null">%</span></span>
+                        </td>
+                        <td [ngClass]="{ negative: !inTheGreen(data.LY_VARIANCE)}">
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') <= 0">{{ data.LY_VARIANCE == 0 || data.LY_VARIANCE == null ? '-' : data.LY_VARIANCE | currency: 'USD':'symbol':'1.0-0'}}</span>
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') > 0">{{ data.LY_VARIANCE == 0 || data.LY_VARIANCE == null ? '-' : data.LY_VARIANCE}}<span *ngIf="data.LY_VARIANCE!= '0' && data.LY_VARIANCE!= null">%</span></span>
+                        </td>                                                                                                                        
+                    </tr>
+                    <tr class="title">
+                        <td>EXPENSES</td>
+                
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="sub-title" *ngFor="let data of FSData.slice(19,38)" [ngClass]="{'maintitle': data.FS_Symbol == '2'}">
+                        <td>{{data.LABLE1}}</td>
+                
+                        <td (click)="openMenu(data,PrsntDate)" [ngClass]="{ negative: !inTheGreen(data.MTD)}" style="cursor: pointer;">
+                              <span *ngIf="data.LABLE1.lastIndexOf('%') <= 0">{{ data.MTD == 0 || data.MTD == null ? '-' : data.MTD | currency: 'USD':'symbol':'1.0-0'}}</span>
+                              <span *ngIf="data.LABLE1.lastIndexOf('%') > 0">{{ data.MTD == 0 || data.MTD == null ? '-' : data.MTD}}<span *ngIf="data.MTD!= '0' && data.MTD!= null">%</span></span>                              
+                        </td>
+                        <td [ngClass]="{ negative: !inTheGreen(data.BUDGET)}">
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') <= 0">{{ data.BUDGET == 0 || data.BUDGET == null ? '-' : data.BUDGET | currency: 'USD':'symbol':'1.0-0'}}</span>
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') > 0">{{ data.BUDGET == 0 || data.BUDGET == null ? '-' : data.BUDGET }}<span *ngIf="data.BUDGET!= '0' && data.BUDGET!= null">%</span></span>                          
+                        </td>
+                        <td [ngClass]="{ negative: !inTheGreen(data.VARIANCE)}">
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') <= 0">{{ data.VARIANCE == 0 || data.VARIANCE == null ? '-' : data.VARIANCE | currency: 'USD':'symbol':'1.0-0'}}</span>
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') > 0">{{ data.VARIANCE == 0 || data.VARIANCE == null ? '-' : data.VARIANCE}}<span *ngIf="data.VARIANCE!= '0' && data.VARIANCE!= null">%</span></span>
+                        </td>
+                        <td (click)="openMenu(data,LYMdate)" [ngClass]="{ negative: !inTheGreen(data.LMY_MTD)}" style="cursor: pointer;">
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') <= 0">{{ data.LMY_MTD == 0 || data.LMY_MTD == null ? '-' : data.LMY_MTD | currency: 'USD':'symbol':'1.0-0'}}</span>
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') > 0">{{ data.LMY_MTD == 0 || data.LMY_MTD == null ? '-' : data.LMY_MTD}}<span *ngIf="data.LMY_MTD!= '0' && data.LMY_MTD!= null">%</span></span>
+                        </td>                        
+                        <td [ngClass]="{ negative: !inTheGreen(data.LMY_VARIANCE)}">
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') <= 0">{{ data.LMY_VARIANCE == 0 || data.LMY_VARIANCE == null ? '-' : data.LMY_VARIANCE | currency: 'USD':'symbol':'1.0-0'}}</span>
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') > 0">{{ data.LMY_VARIANCE == 0 || data.LMY_VARIANCE == null ? '-' : data.LMY_VARIANCE}}<span *ngIf="data.LMY_VARIANCE!= '0' && data.LMY_VARIANCE!= null">%</span></span>
+                        </td>
+                        <td [ngClass]="{ negative: !inTheGreen(data.LM_MTD)}">
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') <= 0">{{ data.LM_MTD == 0 || data.LM_MTD == null ? '-' : data.LM_MTD | currency: 'USD':'symbol':'1.0-0'}}</span>
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') > 0">{{ data.LM_MTD == 0 || data.LM_MTD == null ? '-' : data.LM_MTD}}<span *ngIf="data.LM_MTD!= '0' && data.LM_MTD!= null">%</span></span>
+                        </td>
+                        <td [ngClass]="{ negative: !inTheGreen(data.LM_VARIANCE)}">
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') <= 0">{{ data.LM_VARIANCE == 0 || data.LM_VARIANCE == null ? '-' : data.LM_VARIANCE | currency: 'USD':'symbol':'1.0-0'}}</span>
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') > 0">{{ data.LM_VARIANCE == 0 || data.LM_VARIANCE == null ? '-' : data.LM_VARIANCE}}<span *ngIf="data.LM_VARIANCE!= '0' && data.LM_VARIANCE!= null">%</span></span>
+                        </td>
+                        <td [ngClass]="{ negative: !inTheGreen(data.YTD)}">
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') <= 0">{{ data.YTD == 0 || data.YTD == null ? '-' : data.YTD | currency: 'USD':'symbol':'1.0-0'}}</span>
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') > 0">{{ data.YTD == 0 || data.YTD == null ? '-' : data.YTD}}<span *ngIf="data.YTD!= '0' && data.YTD!= null">%</span></span>
+                        </td>
+                        <td [ngClass]="{ negative: !inTheGreen(data.CY_BUDGET)}">
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') <= 0">{{ data.CY_BUDGET == 0 || data.CY_BUDGET == null ? '-' : data.CY_BUDGET | currency: 'USD':'symbol':'1.0-0'}}</span>
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') > 0">{{ data.CY_BUDGET == 0 || data.CY_BUDGET == null ? '-' : data.CY_BUDGET}}<span *ngIf="data.CY_BUDGET!= '0' && data.CY_BUDGET!= null">%</span></span>
+                        </td>
+                        <td [ngClass]="{ negative: !inTheGreen(data.CY_VARIANCE)}">
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') <= 0">{{ data.CY_VARIANCE == 0 || data.CY_VARIANCE == null ? '-' : data.CY_VARIANCE | currency: 'USD':'symbol':'1.0-0'}}</span>
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') > 0">{{ data.CY_VARIANCE == 0 || data.CY_VARIANCE == null ? '-' : data.CY_VARIANCE}}<span *ngIf="data.CY_VARIANCE!= '0' && data.CY_VARIANCE!= null">%</span></span>
+                        </td>
+                        <td [ngClass]="{ negative: !inTheGreen(data.LY_YTD)}">
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') <= 0">{{ data.LY_YTD == 0 || data.LY_YTD == null ? '-' : data.LY_YTD | currency: 'USD':'symbol':'1.0-0'}}</span>
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') > 0">{{ data.LY_YTD == 0 || data.LY_YTD == null ? '-' : data.LY_YTD}}<span *ngIf="data.LY_YTD!= '0' && data.LY_YTD!= null">%</span></span>
+                        </td>
+                        <td [ngClass]="{ negative: !inTheGreen(data.LY_VARIANCE)}">
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') <= 0">{{ data.LY_VARIANCE == 0 || data.LY_VARIANCE == null ? '-' : data.LY_VARIANCE | currency: 'USD':'symbol':'1.0-0'}}</span>
+                            <span *ngIf="data.LABLE1.lastIndexOf('%') > 0">{{ data.LY_VARIANCE == 0 || data.LY_VARIANCE == null ? '-' : data.LY_VARIANCE}}<span *ngIf="data.LY_VARIANCE!= '0' && data.LY_VARIANCE!= null">%</span></span>
+                        </td>                                                                                               
+                    </tr>
+                 </tbody>
+                 <tbody *ngIf="NoData">
+                    <tr><td colspan="13">No Records Found!!!</td></tr>
+                </tbody>   
+             </table>
+           </div>
+         </div>  
+     </div>
+     
+  </div>
+
+

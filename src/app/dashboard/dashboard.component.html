@@ -1,0 +1,97 @@
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="white" type="ball-fussion">
+    <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>
+<app-header></app-header>
+<div class="Refresh">Updated: 06/08/22 07:35 AM <img src="../../../assets/images/refresh_icon.png" alt=""> </div>
+<div class="container-fluid pe-0 mt-1">
+    <div class="col-12">
+        <div class="d-flex">
+            <div class="gross-tbl table-responsive">
+                <table>
+                    <thead style="cursor: pointer;white-space: nowrap;">
+                        <tr>
+                            <th rowspan="2" style="padding-left: 1.3rem;">Units And Gross</th>
+                        </tr>
+                        <tr>
+                            <th rowspan="2" style="font-size: 0.6rem;padding-left: 1rem;">&nbsp;&nbsp;<i>As of {{TodayDate | date:'MMMM'}}&nbsp;{{TodayDate |date:'d'}} @{{ Time|date:'h:mm a'}}
+                                </i></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="title">
+                            <td>
+                                <span> SALES </span>
+                            </td>
+                        </tr>
+                        <tr *ngFor="let Unitsgross of unitsandgross; let i=index">
+                            <td [ngClass]="{'total' : Unitsgross.val.slice(0,5) == 'Total' }">
+                                {{(Unitsgross.val == undefined ? '--' : ( (Unitsgross.val.toString() | slice:0:22) +
+                                (Unitsgross.val.toString().length > 22 ? '...' : '') ))}}
+                            </td>
+                        </tr>
+                    <tbody>
+                </table>
+            </div>
+            <div class="sec-tbl table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th colspan="2"></th>
+                            <th id="DataHead2">Today</th>
+                            <th id="DataHead5">vs. Daily Goal</th>
+                            <th id="DataHead2">MTD</th>
+                            <th id="DataHead3">Pace</th>
+                            <th id="DataHead4">Goal</th>
+                            <th id="DataHead6">Variance</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                           
+                            <td id="DataBody2" colspan="8" style="color: #f1f1f1;border-right: 2px solid #e0e1e2;">&nbsp;</td>
+                        </tr>
+                        <tr *ngFor="let Unitsgross of unitsandgross; let i=index"
+                            [ngClass]="{'title' : i % 2 == 0 , 'titleOdd' : i % 2 != 0 }">
+                            <td colspan="2">&nbsp;&nbsp;</td>
+                            <td id="DataBody2" [ngClass]="{ negative: !inTheGreen(Unitsgross.Today)}">{{
+                                Unitsgross.Today == 0 ? '-' : Unitsgross.Today | number}}</td>
+                            <td id="DataBody3" [ngClass]="{ negative: !inTheGreen(Unitsgross.DailyGoal)}">{{
+                                Unitsgross.DailyGoal == 0 ? '-' : Unitsgross.DailyGoal | number}}</td>
+                            <!-- <td id="DataBody4" [ngClass]="{ negative: !inTheGreen(Unitsgross.MTD)}">{{ (Unitsgross.MTD
+                                == 0 ? '-' : Unitsgross.MTD | currency:'USD':'symbol':'1.0-0')}}</td>
+                            <td id="DataBody5" [ngClass]="{ negative: !inTheGreen(Unitsgross.Pace)}">{{ (Unitsgross.Pace
+                                == 0 ? '-' : Unitsgross.Pace | currency:'USD':'symbol':'1.0-0')}}</td>
+                            <td id="DataBody6" [ngClass]="{ negative: !inTheGreen(Unitsgross.Goal)}">{{ (Unitsgross.Goal
+                                == 0 ? '-' : Unitsgross.Goal | currency:'USD':'symbol':'1.0-0')}}</td>
+                            <td id="DataBody7" [ngClass]="{ negative: !inTheGreen(Unitsgross.Variance)}">{{
+                                (Unitsgross.Variance == 0 ? '-' : Unitsgross.Variance |
+                                currency:'USD':'symbol':'1.0-0')}}</td> -->
+                                <td *ngIf="Unitsgross.val == 'New Units' || Unitsgross.val == 'Used Units' || Unitsgross.val == 'Total Units' " id="DataBody4" [ngClass]="{ negative: !inTheGreen(Unitsgross.MTD)}">{{ Unitsgross.MTD
+                                    == 0 ? '-' : Unitsgross.MTD }}</td>
+                                <td *ngIf="Unitsgross.val == 'New Units' || Unitsgross.val == 'Used Units' || Unitsgross.val == 'Total Units' " id="DataBody5" [ngClass]="{ negative: !inTheGreen(Unitsgross.Pace)}">{{ Unitsgross.Pace
+                                    == 0 ? '-' : Unitsgross.Pace }}</td>
+                                <td *ngIf="Unitsgross.val == 'New Units' || Unitsgross.val == 'Used Units' || Unitsgross.val == 'Total Units' " id="DataBody6" [ngClass]="{ negative: !inTheGreen(Unitsgross.Goal)}">{{ Unitsgross.Goal
+                                    == 0 ? '-' : Unitsgross.Goal }}</td>
+                                <td *ngIf="Unitsgross.val == 'New Units' || Unitsgross.val == 'Used Units' || Unitsgross.val == 'Total Units' " id="DataBody7" [ngClass]="{ negative: !inTheGreen(Unitsgross.Variance)}">{{
+                                    Unitsgross.Variance == 0 ? '-' : Unitsgross.Variance }}</td>
+                            <td id="DataBody4" *ngIf="Unitsgross.val != 'New Units' && Unitsgross.val != 'Used Units' && Unitsgross.val != 'Total Units' " [ngClass]="{ negative: !inTheGreen(Unitsgross.MTD)}">{{ (Unitsgross.MTD
+                                == 0 ? '-' : Unitsgross.MTD | currency:'USD':'symbol':'1.0-0')}}</td>
+                            <td id="DataBody5" *ngIf="Unitsgross.val != 'New Units' && Unitsgross.val != 'Used Units' && Unitsgross.val != 'Total Units' " [ngClass]="{ negative: !inTheGreen(Unitsgross.Pace)}">{{ (Unitsgross.Pace
+                                == 0 ? '-' : Unitsgross.Pace | currency:'USD':'symbol':'1.0-0')}}</td>
+                            <td id="DataBody6"*ngIf="Unitsgross.val != 'New Units' && Unitsgross.val != 'Used Units' && Unitsgross.val != 'Total Units' " [ngClass]="{ negative: !inTheGreen(Unitsgross.Goal)}">{{ (Unitsgross.Goal
+                                == 0 ? '-' : Unitsgross.Goal | currency:'USD':'symbol':'1.0-0')}}</td>
+                            <td id="DataBody7" *ngIf="Unitsgross.val != 'New Units' && Unitsgross.val != 'Used Units' && Unitsgross.val != 'Total Units' " [ngClass]="{ negative: !inTheGreen(Unitsgross.Variance)}">{{
+                                (Unitsgross.Variance == 0 ? '-' : Unitsgross.Variance |
+                                currency:'USD':'symbol':'1.0-0')}}</td>
+                        </tr>
+                    <tbody>
+                    <tbody *ngIf="NoData">
+                        <tr>
+                            <td colspan="11">No Records Found!!!</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

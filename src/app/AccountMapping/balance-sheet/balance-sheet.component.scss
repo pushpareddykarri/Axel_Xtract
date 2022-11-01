@@ -1,0 +1,295 @@
+
+.gross-tbl  {
+    overflow-x: hidden;
+    text-align: left;
+  
+    table{
+    white-space: nowrap; 
+    margin-bottom: 30px;
+
+    table, td, th {
+      border-collapse: collapse;
+    }
+    
+    th {
+      padding: 2px 25px;
+    }
+    
+    td {
+      padding: 2px 25px;
+    }
+    .sub-title td:first-child{
+        padding: 2px 50px !important;
+    }
+      thead {
+      border-top: none !important;
+      border-bottom: none !important;
+    
+      background: #ffffff;
+      // position: sticky;
+      // z-index: 2;
+      // top:0;
+  
+      // tr th{
+      // z-index: 3;
+      // left: 0;
+      // top: 0;}
+  
+      tr:nth-child(1) th:not(:first-child){
+      padding-bottom: 0px !important;
+      color: #fff;
+      font-size: 0.9rem;
+       
+      }
+      tr:nth-child(2) th{
+        border-bottom: 5px solid #2d91f1;
+      }
+
+      .trgt{
+        font-family: 'Roboto' !important;
+        color: #a2a3a7 !important;
+      }
+      
+      .SGtitle{
+        border-bottom: 11px solid #2d91f1 !important;
+        font-size: 1rem;
+       
+      }
+      // .SGtitle:nth-child(1) th:first-child{
+      //   border-bottom: 5px solid #2d91f1;
+      //   font-size: .9rem;
+        
+      // }
+      tr:nth-child(2) th:not(:first-child){
+      padding-bottom: 10px;
+      // color: #a2a3a7;
+      font-size: .80rem;
+      font-family: 'RobotoBold';
+    
+      }
+      .factory-row:nth-child(1) th:not(:first-child){
+        // padding-bottom: 10px !important;
+        color: #a2a3a7 !important;
+        font-size: 1rem !important;
+      }
+  }
+  
+      thead {
+      tr th:first-child {
+      position: sticky;
+      z-index: 4;
+      left: 0;
+      display: block;
+      background-color: #2d91f1;
+      color: white;
+      font-size: .80rem;
+      font-family: 'RobotoBold';
+    }
+    .TitleHead th:first-child{
+        font-family: 'RobotoBold';
+        background-color: #363b4f !important;
+        font-size: 1.1rem;
+        color: #fff;
+    }
+    .TitleHead th{
+        font-family: 'RobotoBold';
+        background-color: #363b4f !important;
+        font-size: 1.1rem;
+        color: #fff;
+    }
+    .title-head th:first-child{
+      background-color: #363b4f !important;
+      border: none;
+      z-index: 0;
+      display: block;
+      color: #fff;
+      font-family: 'RobotoBold';
+      font-size:  0.9rem;
+    }
+    .title-head td:first-child{
+      background-color: #fff0 !important;
+      border: none;
+      z-index: 0;
+      display: block;
+      color: #000;
+      font-size:  0.9rem;
+      font-family: 'RobotoBold';
+    }
+
+  }
+  .divRed{ color: red;}
+  .title-head th{
+    background-color: #363b4f !important;
+    font-family: 'RobotoBold';
+  }
+  .EmptyRed{
+    background-color: #fff0 !important;  
+    font-family: 'Roboto';
+    font-size: .9rem;
+    color: red;
+  }
+  .EmptyRed td:first-child{
+    background-color: #fff0 !important;  
+    color: red !important;
+  }
+  .Empty{
+    background-color: #fff0 !important;  
+     
+    font-family: 'Roboto';
+    font-size: .9rem;
+    color: #000;
+     td:first-child{
+    background-color: #fff0 !important;  
+    color: #000 !important;
+  }
+  
+  
+  }
+  .Empty#363b4f{
+    background-color: #363b4f !important;  
+    
+    font-family: 'Roboto';
+    font-size: .9rem;
+    color: #fff;
+  }
+  .Empty#363b4f td:first-child{
+    background-color: #363b4f !important;  
+    color: #fff !important;
+  }
+  .title-spl{
+      font-size:  0.9rem;
+  }
+  .title-head td{
+    background-color: #fff0 !important;
+    
+    font-family: 'Roboto';
+  }
+ 
+  .Expenses{
+    td:first-child{
+        background-color: #fff0 !important;  color: #000 !important;
+     }
+      td{
+        background-color: #fff0 !important;  color: #000 !important;
+     }
+  } 
+  .EmptyRed td:not(:first-child){
+    text-align: end;
+  }
+  .Empty#363b4fRow td:not(:first-child){
+    text-align: end !important;
+  }
+ 
+    tbody {
+      background: #fff;
+    color: #788494; 
+    font-size: .7rem;
+    font-family: 'Roboto';
+    .title-head td:first-child{
+      text-align: center;
+    }
+    tr  td:first-child {
+    position: sticky;
+    z-index: 4;
+    left: 0;
+    width: 150px;
+    
+    background: #363b4f;
+    color: #fff;
+    padding-right: 1rem;
+    
+      }
+     .sub-title:hover{
+        background-color: #363b4f !important;
+        color: white !important;
+      }
+      .title:hover{
+        background-color: #363b4f !important;
+        color: white !important;
+      }
+
+
+      .title:nth-child(odd){
+        color: #000;
+        background-color: #e5e5e5;
+      }
+      .sub-title:nth-child(odd){
+        color: #000;
+        background-color: #e5e5e5;
+      }
+ 
+      
+    .title{
+  
+    font-family: 'RobotoBold';
+    color: #000;
+    font-size:  0.8rem;
+
+  
+    td:first-child {
+    color: white;
+    word-wrap: break-word;
+    font-size:  0.8rem !important;
+    text-align: left;
+    }
+    .sub-Trgt{
+      font-family: 'Roboto' ;
+      color: #000 ;
+      background-color: #eaf4fd;
+    }
+    .sub-Diffrnce{
+      font-family: 'Roboto' !important;
+      color: #000 !important;
+      background-color: #eaf4fd !important;
+    }
+    .sub-trgt{
+      font-family: 'Roboto' ;
+      color: #000 ;
+      background-color: #9dc9f169;
+    }
+      
+    }
+    .total{
+    font-family: 'Roboto';
+    color: #000;
+    font-size: .9rem;
+    border: 1px solid #2d7dcc;
+    }
+    .sub-title{
+    color: #000;
+    font-family: 'Roboto';
+    font-size: .8rem;
+    text-align: left !important;
+    
+    td:nth-child(1) {
+    color: #ffff;
+       }
+      .sub-trgt{
+        font-family: 'Roboto' ;
+        color: #000 ;
+        background-color: #9dc9f169;
+      }
+    
+    
+     }
+    }
+  }
+}
+  .Refresh {
+    text-align: right;
+    width: 96%;
+    color: #2a8fed;
+    font-family: 'Roboto';
+    font-size: 0.7rem;
+    margin-top: 0.3rem;
+    
+  }
+  
+  .Refresh img {
+    margin-left: 10px;
+  }   
+  
+
+  .trheader th{
+    color: #000 !important; text-align: center !important; background-color: #fff;
+  }

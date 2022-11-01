@@ -1,0 +1,787 @@
+
+
+<div class="container-fluid pe-0 mt-1">
+    <div class="col-12">
+        <div class="d-flex">
+            <div class="head-tbl table-responsive" >
+                <table>
+                    <thead >
+                        <tr >
+                            <th colspan="2"  style="background-color: black !important;">&nbsp;</th>
+                            
+                            <th  style="background-color: black !important;color: white; ">Total</th>
+                            <th  style="background-color: black;color: white;  ">0-7</th>
+                            <th  style="background-color: black;color: white; " >8-15</th>
+                            <th  style="background-color: black;color: white; ">16-30</th>
+                            <th  style="background-color: black;color: white;  ">31+</th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr >
+                            <td style="background-color: #2d91f1;"><span>&nbsp;</span></td>
+                            <td style="background-color: #2d91f1;color: white;">CIT Aging</td>
+                            <td >$172,118.64</td>
+                            <td >$96,746.31</td>
+                            <td >$40,873.43</td>
+                            <td > $16,499.45</td>
+                            <td >$1,500.00</td>
+                        </tr>
+       
+                    </tbody>
+                        </table>
+                </div>
+                <div >
+                    <div style="padding-left: 23px;">
+                      <button type="submit" class="grp-btn grp-sml-btn"
+                      (click)="avgdays(Avgdays)">Avg. Days To Fund</button>
+                    </div>
+                    </div>
+            </div>
+          
+        </div>
+    </div>
+
+    
+
+<div class="container-fluid pe-0 mt-1" style="padding-top: 20px;">
+    <div class="col-12">
+        <div class="d-flex">
+            <div class="sec-tbl table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th rowspan="2"></th>
+                            <th colspan="11" style="border-right: 2px solid #e0e1e2;">Deal Info</th>
+                            <th colspan="3" style="border-right: 2px solid #e0e1e2;">Vehicle</th>
+                            <th colspan="2" style="border-right: 2px solid #e0e1e2;">Customer</th>
+                            <th colspan="4" style="border-right: 2px solid #e0e1e2;">Dates</th>
+                            <th colspan="3" style="border-right: 2px solid #e0e1e2;">Balances</th>
+                            <th colspan="5" style="border-right: 2px solid #e0e1e2;">Due Dates</th>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <th>CIT Age</th>
+                            <th>Store</th>
+                            <th>F&I Mgr</th>
+                            <th>Account</th>
+                            <th>Control</th>
+                            <th>Stock #</th>
+                            <th>New/Used</th>
+                            <th>Deal #</th>
+                            <th>Type</th>
+                            <th>Status</th>
+                            <th>Bank Name</th>
+
+                            <th>Year</th>
+                            <th>Make</th>
+                            <th>Model</th>
+
+                            <th>Name</th>
+                            <th>Number</th>
+
+                            <th>Delivery</th>
+                            <th>Sale</th>
+                            <th>Funding</th>
+                            <th>Sold Age</th>
+
+                            <th>Inventory</th>
+                            <th>Floorplan</th>
+                            <th>CIT</th>
+
+                            <th>27</th>
+                            <th>28</th>
+                            <th>29</th>
+                            <th>30</th>
+                            <th>31</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="odd">
+                            <td><span>&nbsp;</span></td>
+                            <td class="divRed">60</td>
+                            <td>Paragon Honda</td>
+                            <td>Jones, J</td>
+                            <td>3250</td>
+                            <td>50353</td>
+                            <td>KE027676</td>
+                            <td>Used</td>
+                            <td>50353</td>
+                            <td>Cash</td>
+                            <td>Finalized</td>
+                            <td>AmeriCredit</td>
+                            
+                            <td>2019</td>
+                            <td>Honda</td>
+                            <td>Civic</td>
+
+                            <td>DelTrant,Jamie</td>
+                            <td>66872</td>
+                            
+                            <td>Jul 26 2020</td>
+                            <td>Jul 26 2020</td>
+                            <td></td>
+                            <td>60</td>
+
+                            <td>$23,503.83</td>
+                            <td>$22,520.00</td>
+                            <td>$0.00</td>
+
+                            <td></td>
+                            <td>$22,520.00</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+             
+                        <tr class="even">
+                            <td></td>
+                            <td class="divRed">25</td>
+                            <td>Paragon Honda</td>
+                            <td>Smith, J</td>
+                            <td>3250</td>
+                            <td>54808</td>
+                            <td>JA266585</td>
+                            <td>Used</td>
+                            <td>54808</td>
+                            <td>Finance</td>
+                            <td>Finalized</td>
+                            <td>CapitalOne</td>
+                            
+                            <td>2018</td>
+                            <td>Honda</td>
+                            <td>Accord</td>
+
+                            <td>Lillo,Ivette</td>
+                            <td>73411</td>
+                            
+                            <td>Jul 20 2020</td>
+                            <td>Jul 20 2020</td>
+                            <td>Jul 20 2020</td>
+                            <td>25</td>
+
+                            <td>$0.00</td>
+                            <td>$18,400.00</td>
+                            <td>$20,575.11</td>
+
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>$18,400.00</td>
+                            <td></td>
+                        </tr>
+                        <tr class="odd">
+                            <td></td>
+                            <td class="divRed">25</td>
+                            <td>Paragon Honda</td>
+                            <td>Hansen, R</td>
+                            <td>3250</td>
+                            <td>54807</td>
+                            <td>JU235141</td>
+                            <td>Used</td>
+                            <td>54807</td>
+                            <td>Lease</td>
+                            <td>Finalized</td>
+                            <td>Ally</td>
+                            
+                            <td>2018</td>
+                            <td>Honda</td>
+                            <td>Civic</td>
+
+                            <td>Wade,Kristin</td>
+                            <td>73410</td>
+                            
+                            <td>Jul 20 2020</td>
+                            <td>Jul 20 2020</td>
+                            <td>Jul 20 2020</td>
+                            <td>25</td>
+
+                            <td>$0.00</td>
+                            <td>$15,700.00</td>
+                            <td>$18,798.32</td>
+
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>$15,700.00</td>
+                            <td></td>
+                        </tr>
+                     
+                        <tr class="even">
+                            <td></td>
+                            <td class="divRed">18</td>
+                            <td>Paragon Honda</td>
+                            <td>Roberts, T</td>
+                            <td>3250</td>
+                            <td>54796</td>
+                            <td>KEI2900</td>
+                            <td>Used</td>
+                            <td>54796</td>
+                            <td>Finance</td>
+                            <td>Finalized</td>
+                            <td>Santander</td>
+                            
+                            <td>2019</td>
+                            <td>Honda</td>
+                            <td>Civic</td>
+
+                            <td>Baker,Callie</td>
+                            <td>73393</td>
+                            
+                            <td>Jul 20 2020</td>
+                            <td>Jul 20 2020</td>
+                            <td>Jul 20 2020</td>
+                            <td>18</td>
+
+                            <td>$0.00</td>
+                            <td>$17,650.00</td>
+                            <td>$16,499.45</td>
+
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>$17,650.00</td>
+                            <td></td>
+                        </tr>
+                        <tr class="odd">
+                            <td></td>
+                            <td class="divRed">17</td>
+                            <td>Paragon Honda</td>
+                            <td>Jones, J</td>
+                            <td>3250</td>
+                            <td>54816</td>
+                            <td>JX022779</td>
+                            <td>Used</td>
+                            <td>54816</td>
+                            <td>Finance</td>
+                            <td>Finalized</td>
+                            <td>AltaBank</td>
+                            
+                            <td>2018</td>
+                            <td>Honda</td>
+                            <td>Civic</td>
+
+                            <td>Medlin,Tristan</td>
+                            <td>73420</td>
+                            
+                            <td>Jul 20 2020</td>
+                            <td>Jul 20 2020</td>
+                            <td>Jul 20 2020</td>
+                            <td>17</td>
+
+                            <td>$22,621.77</td>
+                            <td>$0.00</td>
+                            <td>$1,500.00</td>
+
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>$0.00</td>
+                            <td></td>
+                        </tr>
+                        <tr class="even">
+                            <td><span>&nbsp;</span></td>
+                            <td class="divRed">15</td>
+                            <td>Paragon Honda</td>
+                            <td>Smith, J</td>
+                            <td>3250</td>
+                            <td>50353</td>
+                            <td>KE027676</td>
+                            <td>Used</td>
+                            <td>50353</td>
+                            <td>Finance</td>
+                            <td>Finalized</td>
+                            <td>AmeriCredit</td>
+                            
+                            <td>2019</td>
+                            <td>Honda</td>
+                            <td>Civic</td>
+
+                            <td>DelTrant,Jamie</td>
+                            <td>66872</td>
+                            
+                            <td>Apr 30 2020</td>
+                            <td>Apr 30 2020</td>
+                            <td></td>
+                            <td>15</td>
+
+                            <td>$23,503.83</td>
+                            <td>$22,520.00</td>
+                            <td>$0.00</td>
+
+                            <td></td>
+                            <td></td>
+                            <td>$22,520.00</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                      
+                        <tr class="odd">
+                            <td></td>
+                            <td class="divRed">14</td>
+                            <td>Paragon Honda</td>
+                            <td>Hansen, R</td>
+                            <td>3250</td>
+                            <td>54808</td>
+                            <td>JA266585</td>
+                            <td>Used</td>
+                            <td>54808</td>
+                            <td>Lease</td>
+                            <td>Finalized</td>
+                            <td>CapitalOne</td>
+                            
+                            <td>2018</td>
+                            <td>Honda</td>
+                            <td>Accord</td>
+
+                            <td>Lillo,Ivette</td>
+                            <td>73411</td>
+                            
+                            <td>Jul 20 2020</td>
+                            <td>Jul 20 2020</td>
+                            <td>Jul 20 2020</td>
+                            <td>14</td>
+
+                            <td>$0.00</td>
+                            <td>$18,400.00</td>
+                            <td>$20,575.11</td>
+
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>$18,400.00</td>                        
+                            <td></td>
+                        </tr>
+                        <tr class="even">
+                            <td></td>
+                            <td class="divRed">12</td>
+                            <td>Paragon Honda</td>
+                            <td>Roberts, T</td>
+                            <td>3250</td>
+                            <td>54807</td>
+                            <td>JU235141</td>
+                            <td>Used</td>
+                            <td>54807</td>
+                            <td>Finance</td>       
+                            <td>Finalized</td>
+                            <td>Ally</td>
+                            
+                            <td>2018</td>
+                            <td>Honda</td>
+                            <td>Civic</td>
+
+                            <td>Wade,Kristin</td>
+                            <td>73410</td>
+                            
+                            <td>Jul 20 2020</td>
+                            <td>Jul 20 2020</td>
+                            <td>Jul 20 2020</td>
+                            <td>12</td>
+
+                            <td>$0.00</td>
+                            <td>$15,700.00</td>
+                            <td>$18,798.32</td>
+
+                            <td></td>
+                            <td></td>
+                            <td></td>                        
+                            <td>$15,700.00</td>
+                            <td></td>
+                        </tr>
+             
+                        <tr class="odd">
+                            <td></td>
+                            <td class="divRed">12</td>
+                            <td>Paragon Honda</td>
+                            <td>Jones, J</td>
+                            <td>3250</td>
+                            <td>54796</td>
+                            <td>KEI2900</td>
+                            <td>Used</td>
+                            <td>54796</td>
+                            <td>Finance</td>   
+                            <td>Finalized</td>
+                            <td>Santander</td>
+                            
+                            <td>2019</td>
+                            <td>Honda</td>
+                            <td>Civic</td>
+
+                            <td>Baker,Callie</td>
+                            <td>73393</td>
+                            
+                            <td>Jul 20 2020</td>
+                            <td>Jul 20 2020</td>
+                            <td>Jul 20 2020</td>
+                            <td>12</td>
+
+                            <td>$0.00</td>
+                            <td>$17,650.00</td>
+                            <td>$16,499.45</td>
+
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>$17,650.00</td>
+                            <td></td>
+                        </tr>
+                        <tr class="even">
+                            <td></td>
+                            <td class="divRed">9</td>
+                            <td>Paragon Honda</td>
+                            <td>Smith, J</td>
+                            <td>3250</td>
+                            <td>54816</td>
+                            <td>JX022779</td>
+                            <td>Used</td>
+                            <td>54816</td>
+                            <td>Cash</td>
+                            <td>Finalized</td>
+                            <td>AltaBank</td>
+                            
+                            <td>2018</td>
+                            <td>Honda</td>
+                            <td>Civic</td>
+
+                            <td>Medlin,Tristan</td>
+                            <td>73420</td>
+                            
+                            <td>Jul 25 2020</td>
+                            <td>Jul 25 2020</td>
+                            <td></td>
+                            <td>9</td>
+
+                            <td>$22,621.77</td>
+                            <td>$0.00</td>
+                            <td>$1,500.00</td>
+
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr class="odd">
+                            <td><span>&nbsp;</span></td>
+                            <td>7</td>
+                            <td>Paragon Honda</td>
+                            <td>Jones, J</td>
+                            <td>3250</td>
+                            <td>50353</td>
+                            <td>KE027676</td>
+                            <td>Used</td>
+                            <td>50353</td>
+                            <td>Cash</td>
+                            <td>Finalized</td>
+                            <td>AmeriCredit</td>
+                            
+                            <td>2019</td>
+                            <td>Honda</td>
+                            <td>Civic</td>
+
+                            <td>DelTrant,Jamie</td>
+                            <td>66872</td>
+                            
+                            <td>Jul 26 2020</td>
+                            <td>Jul 26 2020</td>
+                            <td></td>
+                            <td>7</td>
+
+                            <td>$23,503.83</td>
+                            <td>$22,520.00</td>
+                            <td>$0.00</td>
+
+                            <td></td>
+                            <td>$22,520.00</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr class="even">
+                            <td></td>
+                            <td>6</td>
+                            <td>Paragon Honda</td>
+                            <td>Smith, J</td>
+                            <td>3250</td>
+                            <td>54808</td>
+                            <td>JA266585</td>
+                            <td>Used</td>
+                            <td>54808</td>
+                            <td>Finance</td>
+                            <td>Finalized</td>
+                            <td>CapitalOne</td>
+                            
+                            <td>2018</td>
+                            <td>Honda</td>
+                            <td>Accord</td>
+
+                            <td>Lillo,Ivette</td>
+                            <td>73411</td>
+                            
+                            <td>Jul 20 2020</td>
+                            <td>Jul 20 2020</td>
+                            <td>Jul 20 2020</td>
+                            <td>6</td>
+
+                            <td>$0.00</td>
+                            <td>$18,400.00</td>
+                            <td>$20,575.11</td>
+
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>$18,400.00</td>
+                            <td></td>
+                        </tr>
+             
+                        <tr class="odd">
+                            <td></td>
+                            <td>5</td>
+                            <td>Paragon Honda</td>
+                            <td>Hansen, R</td>
+                            <td>3250</td>
+                            <td>54807</td>
+                            <td>JU235141</td>
+                            <td>Used</td>
+                            <td>54807</td>
+                            <td>Finance</td>
+                            <td>Finalized</td>
+                            <td>Ally</td>
+                            
+                            <td>2018</td>
+                            <td>Honda</td>
+                            <td>Civic</td>
+
+                            <td>Wade,Kristin</td>
+                            <td>73410</td>
+                            
+                            <td>Jul 20 2020</td>
+                            <td>Jul 20 2020</td>
+                            <td>Jul 20 2020</td>
+                            <td>5</td>
+
+                            <td>$0.00</td>
+                            <td>$15,700.00</td>
+                            <td>$18,798.32</td>
+
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>$15,700.00</td>
+                            <td></td>
+                        </tr>
+                        <tr class="even">
+                            <td></td>
+                            <td>4</td>
+                            <td>Paragon Honda</td>
+                            <td>Roberts, T</td>
+                            <td>3250</td>
+                            <td>54796</td>
+                            <td>KEI2900</td>
+                            <td>Used</td>
+                            <td>54796</td>
+                            <td>Finance</td>
+                            <td>Finalized</td>
+                            <td>Santander</td>
+                            
+                            <td>2019</td>
+                            <td>Honda</td>
+                            <td>Civic</td>
+
+                            <td>Baker,Callie</td>
+                            <td>73393</td>
+                            
+                            <td>Jul 20 2020</td>
+                            <td>Jul 20 2020</td>
+                            <td>Jul 20 2020</td>
+                            <td>4</td>
+
+                            <td>$0.00</td>
+                            <td>$17,650.00</td>
+                            <td>$16,499.45</td>
+
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>$17,650.00</td>
+                            <td></td>
+                        </tr>
+                        <tr class="odd">
+                            <td><span>&nbsp;</span></td>
+                            <td>2</td>
+                            <td>Paragon Honda</td>
+                            <td>Hansen, R</td>
+                            <td>3250</td>
+                            <td>54816</td>                          
+                            <td>JX022779</td>
+                            <td>Used</td>
+                            <td>54816</td>  
+                            <td>Lease</td>
+                            <td>Finalized</td>
+                            <td>AltaBank</td>
+                            
+                            <td>2018</td>
+                            <td>Honda</td>
+                            <td>Civic</td>
+
+                            <td>Medlin,Tristan</td>
+                            <td>73420</td>
+                            
+                            <td>Jul 25 2020</td>
+                            <td>Jul 25 2020</td>
+                            <td></td>
+                            <td>2</td>
+
+                            <td>$22,621.77</td>
+                            <td>$0.00</td>
+                            <td>$1,500.00</td>
+
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr class="even">
+                            <td><span>&nbsp;</span></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>                          
+                            <td></td>
+                            <td></td>
+                            <td></td>  
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            
+                            <td></td>
+                            <td></td>
+                            <td></td>
+
+                            <td></td>
+                            <td></td>
+                            
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+
+                            <td class="TotalDueDates">$138,376.80</td>
+                            <td class="TotalDueDates">$222,810.00</td>
+                            <td class="TotalDueDates">$172,118.64</td>
+
+                            <td class="TotalDueDates">$0.00</td>
+                            <td class="TotalDueDates">$45,040.00</td>
+                            <td class="TotalDueDates">$22,520.00</td>
+                            <td class="TotalDueDates">$155,250.00</td>
+                            <td class="TotalDueDates">$0.00</td>
+                        </tr>
+                         
+                        <tbody>
+                    </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<ng-template #Avgdays let-modal >
+
+  <div class="row" id = "Account Mapping" style="width: 30% !important;margin-left: 20%;
+  margin-top: 15%;"  >
+    <div class="col-12">
+        <div class="acct-tbl " style="border-radius: 15px;background: white;width: max-content;">
+            <div class="header d-flex align-items-center">
+                <h5 class="title m-0 ms-2">
+                    <img src="" alt=""> <span class="slash">//</span>Avg. Days To Fund
+                </h5>
+                      <div class="col-7" style="display: flex;align-items:center;justify-content:center">
+                        <div style="font-family: Gotham\ Book\ Regular;font-size: 0.7vw;">By F&I Manager</div>
+                        <div style="margin: 0px 6px;"> <label style="float:left;" class="switch">
+                                <input type="checkbox" >
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                        <div style="font-family: Gotham\ Book\ Regular;font-size: 0.7vw;">By Lender</div>
+                    </div>
+             
+                <a type="button" class="close-btn ms-auto me-2" (click)="onclose()"><i class="fa-solid fa-xmark"></i> </a>
+            </div>
+            <div  class="col-12">
+           
+            <table>
+                <thead >
+                    <tr>
+                       
+                        
+                        <td  style="background-color: #2d91f1!important;color: white;    padding-left: 30%;"><</td>
+                   
+                    
+                        <td  style="background-color:  #2d91f1;color: white; text-align: center; ">Jan</td>
+                    
+
+                        <td   style="background-color:  #2d91f1;color: white;text-align: center;  " >Feb</td>
+                        <!-- <th colspan="2"  style="background-color: #2d91f1 !important;">&nbsp;</th> -->
+
+                        <td   style="background-color:  #2d91f1;color: white;text-align: center; ">Mar</td>
+
+                        <!-- <th colspan="2"  style="background-color: #2d91f1 !important;">&nbsp;</th> -->
+                        <td style="background-color: #2d91f1!important;color: white;padding-right: 5px;">></td>
+
+
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr >
+                       
+                        <td style="background-color:#1b1b1b;color: white;    padding: 12px 65px">Jones, J</td>
+                        <td style="background-color:white;color: black;    padding: 12px 65px"> 9.3</td>
+                        <td style="background-color:white;color: black;    padding: 12px 65px"> 9.3</td>
+
+                        <td style="background-color:white;color: black;    padding: 12px 65px"> 9.3</td>
+
+                    </tr>
+                    <tr>
+                        <td style="background-color: #343435;color: white;    padding: 12px 65px">Smith, J</td>
+                        <td style="background-color:white;color: black;    padding: 12px 65px"> 12.4</td>
+                        <td style="background-color:white;color: black;    padding: 12px 65px"> 12.4</td>
+                        <td style="background-color:white;color: black;    padding: 12px 65px"> 12.4</td>
+
+
+                    </tr>
+                    <tr>
+                        <td style="background-color: #1b1b1b;color: white;    padding: 12px 65px" >Hansen, R</td>
+                        <td style="background-color:white;color: black;    padding: 12px 65px"> 11.8</td>
+                        <td style="background-color:white;color: black;    padding: 12px 65px"> 11.8</td>
+                        <td style="background-color:white;color: black;    padding: 12px 65px"> 11.8</td>
+
+                    </tr>
+                    <tr>
+                        <td style="background-color: #343435;color: white;    padding: 12px 65px">Roberts, T</td>
+                        <td style="background-color:white;color: black;    padding: 12px 65px"> 7.7</td>
+                        <td style="background-color:white;color: black;    padding: 12px 65px"> 7.7</td>
+                        <td style="background-color:white;color: black;    padding: 12px 65px"> 7.7</td>
+
+                    </tr>
+                    <tr>
+                        <td style="background-color: #1b1b1b;color: white;    padding: 12px 65px"> Total</td>
+                        <td style="background-color:white;color: black;    padding: 12px 65px"> 10.3</td>
+                        <td style="background-color:white;color: black;    padding: 12px 65px"> 10.3</td>
+                        <td style="background-color:white;color: black;    padding: 12px 65px"> 10.3</td>
+
+                    </tr>
+   
+                </tbody>
+                    </table>
+            </div>
+
+            
+        
+        </div>
+    </div>
+   </div>
+ </ng-template>
+

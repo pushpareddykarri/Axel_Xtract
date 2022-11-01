@@ -1,0 +1,331 @@
+
+<div class="container-fluid d-flex justify-content-center align-items-center" >
+    <div class="report-controls-popup">
+        <div class="header d-flex align-items-center">
+            <h5 class="title m-0 ms-2">
+                <img src="" alt=""> <span class="slash">//</span>REPORT CONTROLS  
+            </h5>
+            <a  type="button" class="close-btn ms-auto me-2" (click)="close()"><i class="fa-solid fa-xmark"></i> </a>
+        </div>
+        <div class="body">
+            <div class="container-fluid">
+            <div class="col-12 data-grouping">
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Data Groupings</h5>
+                        <div class="row">
+                          <div class="col-7">
+                            <span class="sub-text m-0">Select up to 2 Filters To Group Your Data                                
+                              </span>
+                         
+                          </div>
+                          <div  class="col-3" style="cursor: pointer; margin-top: -25px;">
+                            <div  title="Reset">
+                              <button (click)="Clear()"  type="button" class="btn btn-primary grp-btn active">Reset</button>
+                            </div>
+                          </div>
+                    </div>
+  
+                        <div class="row mb-4">
+                          <div class="col-5 box">
+                              <div class="col-12 " *ngFor="let data of dataGrouping">
+                                  <button type="button" class="btn btn-primary grp-btn " (click)='pushvalue(data)' [ngClass]="{'bg-color':selectedDataGrouping.indexOf(data)>=0, 'bg-color-none':selectedDataGrouping.indexOf(data)<0,'Pointer':data.Active=='N'}">
+                                      <div class="pull-left prt" [ngClass]="{'disabled':data.Active=='N'}">{{data.ARG_LABEL}}  </div>
+                                      <div *ngIf="selectedDataGrouping.indexOf(data)>=0" class="text-end">
+                                        {{selectedDataGrouping.indexOf(data)+1}}
+                                      </div> 
+                                   
+                                    </button>
+                              </div>
+                          
+                          </div>
+                      </div>
+                    </div>
+  
+  
+                    <div class="col-8">
+                     <div class="row">   
+                    <div class="col-4">
+                        <div class="col-12">
+                         <!-- <div class="mb-3">
+                          <h5 class="mb-1">Month</h5>
+                          <div class="d-flex align-items-baseline">
+                          <input  [(ngModel)]="month"  autocomplete="off" class="form-control date" name="date" bsDatepicker [bsConfig]="{dateInputFormat: 'MM/YYYY'}" 
+                          (onShown)="onOpenCalendar($event)" placeholder="Calendar" (ngModelChange)="changeDate($event)">
+                         
+                          </div>
+                         </div> -->
+                         <div class="mb-3">
+                          <h5 class="mb-1">Date</h5>
+  
+                               <form class="row form-inline">                         
+                              <div class="col-12 form-group">
+                                  <div class="input-group">
+                                  <input #dpFromDate 
+                                         class="form-control" placeholder="mm/dd/yyyy"
+                                         (click)="datepicker.toggle()" 
+                                         name="dpFromDate"
+                                         [value]="formatter.format(fromDate)"
+                                         (input)="fromDate = validateInput(fromDate, dpFromDate.value)">&nbsp;
+                                         <!-- <i style="font-size:24px" class="fa">&#xf073;</i> -->
+                                  <input #dpToDate
+                                  class="form-control" placeholder="mm/dd/yyyy"
+                                  name="dpToDate"
+                                  (click)="datepicker.toggle()" 
+                                  [value]="formatter.format(toDate)"
+                                  (input)="toDate = validateInput(toDate, dpToDate.value)">
+                       
+                                </div>
+                                <div class="form-group hidden">
+                                  <div class="input-group">
+                                    <input name="datepicker" style="display: none;"
+                                           class="form-control"
+                                           ngbDatepicker
+                                           #datepicker="ngbDatepicker"
+                                           [autoClose]="'outside'"
+                                           (dateSelect)="onDateSelection($event)"
+                                           [displayMonths]="2"
+                                           [dayTemplate]="t"
+                                           outsideDays="hidden"
+                                           [startDate]="fromDate!"
+                                           tabindex="-1">
+                                    <ng-template #t let-date let-focused="focused" >
+                                      <span class="custom-day"
+                                            [class.focused]="focused"
+                                            [class.range]="isRange(date)"
+                                            [class.faded]="isHovered(date) || isInside(date)"
+                                            (mouseenter)="hoveredDate = date"
+                                            (mouseleave)="hoveredDate = null">
+                                        {{ date.day }}
+                                      </span>
+                                    </ng-template>
+                                  </div>
+                                </div>
+                              </div>
+                           
+                           
+                            </form>
+                            </div>
+                            <!-- <div class="mb-3">
+                                <h5 class="mb-1">Date</h5>
+                                <div class="d-flex align-items-baseline">
+                                <input type="date" class="form-control date" id="title" [(ngModel)]="FromDate" (change)="getrange($event,'F')">
+                                <h2 class="m-0 pe-2">to</h2>
+                                <input type="date" class="form-control date" id="title" [(ngModel)]="ToDate" (change)="getrange($event,'T')" style="pointer-events: none;opacity: 0.6;">
+                                </div>
+                            </div> -->
+                            
+                      
+                        </div>
+                        <!-- <div class="col-12">
+                            <div class="mt-3 mb-3">
+                                <h5>RO Type</h5>
+                                <button type="button" class="btn btn-primary grp-sml-btn" (click)="multipleorsingle('RO','Open')" [ngClass]="{'bg-color':openorclosed.indexOf('Open')>=0, 'bg-color-wt':openorclosed.indexOf('Open')<0}">Open</button>
+                                <button type="button" class="btn btn-primary grp-sml-btn" (click)="multipleorsingle('RO','Closed')" [ngClass]="{'bg-color':openorclosed.indexOf('Closed')>=0, 'bg-color-wt':openorclosed.indexOf('Closed')<0}">Closed</button>
+                            </div>
+                        </div> -->
+                        <div class="col-12">
+                          <div class="mt-3 mb-3">
+                              <h5>Sale Type</h5>
+                              <button type="button" class="btn btn-primary grp-sml-btn" (click)="multipleorsingle('PT','counter')" [ngClass]="{'bg-color':saletype.indexOf('counter')>=0, 'bg-color-wt':saletype.indexOf('counter')<0}">Counter Retail </button>
+                              <button type="button" class="btn btn-primary grp-sml-btn" (click)="multipleorsingle('PT','wholesale')" [ngClass]="{'bg-color':saletype.indexOf('wholesale')>=0, 'bg-color-wt':saletype.indexOf('wholesale')<0}">Wholesale</button>
+                              <button type="button" class="btn btn-primary grp-sml-btn" (click)="multipleorsingle('PT','Customerpay')" [ngClass]="{'bg-color':saletype.indexOf('Customerpay')>=0, 'bg-color-wt':saletype.indexOf('Customerpay')<0}">Customer Pay</button>
+                              <button type="button" class="btn btn-primary grp-sml-btn" (click)="multipleorsingle('PT','Warranty')" [ngClass]="{'bg-color':saletype.indexOf('Warranty')>=0, 'bg-color-wt':saletype.indexOf('Warranty')<0}">Warranty</button>
+                              <button type="button" class="btn btn-primary grp-sml-btn" (click)="multipleorsingle('PT','Internal')" [ngClass]="{'bg-color':saletype.indexOf('Internal')>=0, 'bg-color-wt':saletype.indexOf('Internal')<0}">Internal</button>
+                          </div>
+                      </div>
+                        <div class="col-12 slt-trgt">
+                            <div class="mt-3 mb-3">
+                                <h5>Department</h5>
+                                <button type="button" class="btn btn-primary grp-btn" (click)="multipleorsingle('Dept','Service')" [ngClass]="{'bg-color':department.indexOf('Service')>=0, 'bg-color-wt':department.indexOf('Service')<0}">Service</button>
+                                <button type="button" class="btn btn-primary grp-btn" (click)="multipleorsingle('Dept','Parts')" [ngClass]="{'bg-color':department.indexOf('Parts')>=0, 'bg-color-wt':department.indexOf('Parts')<0}">Parts</button>
+                                <!-- <button type="button" class="btn btn-primary grp-sml-btn" (click)="multipleorsingle('Dept','Others')" [ngClass]="{'bg-color':department.indexOf('Others')>=0, 'bg-color-wt':department.indexOf('Others')<0}">Others per</button> -->
+                                <!-- <button type="button" class="btn btn-primary grp-sml-btn " (click)="multipleorsingle('Dept','svc')" [ngClass]="{'bg-color':department.indexOf('svc')>=0, 'bg-color-wt':department.indexOf('svc')<0}">Svc Dept Mapping</button> -->
+                                <button type="button" class="btn btn-primary grp-btn" (click)="multipleorsingle('Dept','Others')" [ngClass]="{'bg-color':department.indexOf('Others')>=0, 'bg-color-wt':department.indexOf('Others')<0}">Others per Svc Dept Mapping</button>
+  
+                            </div>
+                        </div>
+                        <!-- <div class="col-12">
+                            <div class="mt-3 mb-3">
+                                <h5>Pack / Holdback</h5>
+                                <button type="button" class="btn btn-primary grp-sml-btn"  (click)="multipleorsingle('PH','I')" [ngClass]="{'bg-color':includeorexclude.indexOf('I')>=0, 'bg-color-wt':includeorexclude.indexOf('I')<0}">Include</button>
+                                <button type="button" class="btn btn-primary grp-sml-btn"  (click)="multipleorsingle('PH','E')" [ngClass]="{'bg-color':includeorexclude.indexOf('E')>=0, 'bg-color-wt':includeorexclude.indexOf('E')<0}">Exclude</button>
+                            </div>
+                        </div> -->
+                      
+                        <div class="col-12 slt-trgt" style="display: none;">
+                                <h5>Select Target</h5>
+                                <button type="button" class="btn btn-primary grp-btn" (click)="multipleorsingle('ST','Y')" [ngClass]="{'bg-color':selecttarget.indexOf('Y')>=0, 'bg-color-wt':selecttarget.indexOf('Y')<0}">Prior Year Same Month</button>
+                                <button type="button" class="btn btn-primary grp-btn" (click)="multipleorsingle('ST','M')" [ngClass]="{'bg-color':selecttarget.indexOf('M')>=0, 'bg-color-wt':selecttarget.indexOf('M')<0}">Prior Month</button>
+                                <button type="button" class="btn btn-primary grp-btn" (click)="multipleorsingle('ST','F')" [ngClass]="{'bg-color':selecttarget.indexOf('F')>=0, 'bg-color-wt':selecttarget.indexOf('F')<0}">Forecast / Goal</button>
+                                <button type="button" class="btn btn-primary grp-btn" (click)="multipleorsingle('ST','C')" [ngClass]="{'bg-color':selecttarget.indexOf('C')>=0, 'bg-color-wt':selecttarget.indexOf('C')<0}">Comparision Group</button>
+                        </div>
+                     
+                    </div>
+                    <div class="col-4">
+  
+                    
+                    <div class="col-12 source" style="pointer-events:none">
+                        <h5>Source</h5>
+                        <button type="button" class="btn btn-primary grp-btn"  (click)="multipleorsingle('SRC','T')" [ngClass]="{'bg-color':Transactorgl.indexOf('T')>=0, 'bg-color-wt':Transactorgl.indexOf('T')<0}">
+                        <span class="pull-left">Transactions</span>
+                      </button>
+                      <button type="button" class="btn btn-primary grp-btn "  style="pointer-events:none;opacity: 0.4;"  (click)="multipleorsingle('SRC','G')" [ngClass]="{'bg-color':Transactorgl.indexOf('G')>=0, 'bg-color-wt':Transactorgl.indexOf('G')<0}">
+                        <span class="pull-left">GL</span>
+                      </button>
+                    </div>
+  
+                    <!-- <div class="col-12 source mt-4">
+                        <h5 class="mt-2">Includes Chargebacks</h5>
+                        <button type="button" class="btn btn-primary grp-sml-btn" (click)="multipleorsingle('IC','Y')" [ngClass]="{'bg-color':includecharges.indexOf('Y')>=0, 'bg-color-wt':includecharges.indexOf('Y')<0}">Yes</button>
+                        <button type="button" class="btn btn-primary grp-sml-btn" (click)="multipleorsingle('IC','N')" [ngClass]="{'bg-color':includecharges.indexOf('N')>=0, 'bg-color-wt':includecharges.indexOf('N')<0}">No</button>
+                    </div> -->
+                    <div class="col-12 source mt-4">
+                      <h5 class="mt-2 mb-3">Report Totals View</h5>
+                      
+                        <!-- <input type="radio"   id="ReportsT" name="Reports" value="T" [(ngModel)]="TotalReport">&nbsp;
+                        <label for="ReportsT" class="pe-2 " style="font-family: 'Gotham\ Book\ Regular';font-size: 0.7vw;vertical-align: baseline;">Top</label>
+           
+      
+              
+                        <input type="radio" id="ReportsB" name="Reports" value="B" [(ngModel)]="TotalReport">&nbsp;
+                        <label for="ReportsB" style="font-family: 'Gotham\ Book\ Regular';font-size: 0.7vw;vertical-align: baseline;">Bottom</label> -->
+  
+                        
+                        <!-- <div class="col-8" style="display: flex;align-items:center;justify-content:center">
+                          <div style="font-family: Gotham\ Book\ Regular;font-size: 0.7vw;">Top</div>
+                          <div style="margin: 0px 6px;"> <label style="float:left;" class="switch">
+                                  <input type="checkbox"  (change)="changeReportsView($event)">
+                                  <span class="slider round"></span>
+                              </label>
+                          </div>
+                          <div style="font-family: Gotham\ Book\ Regular;font-size: 0.7vw;">Bottom</div>
+          
+                      </div> -->
+                      <button type="button" class="btn btn-primary grp-sml-btn" (click)="multipleorsingle('TB','T')" [ngClass]="{'bg-color':toporbottom.indexOf('T')>=0, 'bg-color-wt':toporbottom.indexOf('T')<0}">Top</button>
+                      <button type="button" class="btn btn-primary grp-sml-btn" (click)="multipleorsingle('TB','B')" [ngClass]="{'bg-color':toporbottom.indexOf('B')>=0, 'bg-color-wt':toporbottom.indexOf('B')<0}">Bottom</button>
+                     
+                  </div>
+  
+                    </div>
+                    <div class="col-4">
+                  
+                      <form [formGroup]="DropDowns"> 
+  
+                        <div class="col-12 mb-4" >
+                        
+                         
+                              <h5 class="mb-2">Stores</h5>
+                              <div class="report-dd" >   
+                              <div class="d-flex align-items-center" >  
+                                <ng-multiselect-dropdown #multiSelect style="width: 70%;"
+                                [placeholder]="'Select Stores'" 
+                                [settings]="strsettings"
+                                [data]="stores" 
+                                [(ngModel)]="StoresIds"
+                                [formControl]="DropDowns.controls.storesData" 
+                                (onDropDownClose)="onDropDownClose($event)"
+    >
+                              </ng-multiselect-dropdown>
+                              </div>
+                              </div>
+                           
+                         
+                     
+                        </div>
+    
+  
+  
+                      <div class="col-12 mb-4" style="pointer-events: none;opacity: 0.4;">
+                        <h5 class="mb-2"> Counterperson/Advisor</h5>
+                        <div class="report-dd" >   
+                        <div class="d-flex align-items-center" >  
+                          <ng-multiselect-dropdown #multiSelect style="width: 70%;"
+                          [placeholder]="'Select '" 
+                          [settings]="sasettings"
+                          [data]="salesPersons" 
+                          [formControl]="DropDowns.controls.srvcAdvisors" 
+                         >
+                        </ng-multiselect-dropdown>
+                        </div>
+                        </div>
+                     
+                    </div>
+                    <!-- <div class="col-12 mb-4">
+                      <h5 class="mb-2">Technicians</h5>
+                      <div class="report-dd" >   
+                      <div class="d-flex align-items-center" >  
+                        <ng-multiselect-dropdown #multiSelect style="width: 70%;"
+                        [placeholder]="' Select'" 
+                        [settings]="techsettings"
+                        [data]="salesManagers" 
+                        [formControl]="DropDowns.controls.Technicians" 
+                     >
+                      </ng-multiselect-dropdown>
+                      </div>
+                      </div>
+                   
+                  </div> -->
+                  <!-- <div class="col-12 mb-4">
+                    <h5 class="mb-2">F&I Manager</h5>
+                    <div class="report-dd" >   
+                    <div class="d-flex align-items-center" >  
+                      <ng-multiselect-dropdown #multiSelect style="width: 70%;"
+                      [placeholder]="' Select F&I Manager'" 
+                      [settings]="fisettings"
+                      [data]="financeManager" 
+                      [formControl]="DropDowns.controls.fiManagers" 
+                    >
+                    </ng-multiselect-dropdown>
+                    </div>
+                    </div>
+                 
+                </div> -->
+                  </form>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+  
+                    
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="col-12 d-flex justify-content-center">
+                <button type="button" class="btn btn-primary me-1" (click)="viewreport()">View Report</button>
+                <button type="button" class="btn btn-primary ms-1" style="cursor:default;opacity: 0.2;" (click)="save()">Save to Favorites</button>
+                <a  class="cancel-txt" (click)="close()">Cancel</a>
+              
+            </div>
+        </div>
+        </div>
+        </div>
+    
+        <div class="modal fade" id="warningmessage" tabindex="-1" aria-labelledby="contModalLabel" aria-hidden="true">
+            <div class="modal-dialog" style="width: fit-content;margin-top: 12%;">
+              <div class="modal-content alert-popup">
+                  <div class="modal-header">
+  <span style="font-size: medium;font-family: Gotham Book Regular">Alerts</span>
+          <span class="close" style="cursor:pointer" data-bs-dismiss="modal" aria-label="Close">X
+          </span>
+  
+        </div>
+                <div class="modal-body" >
+                  <div class="col-lg-12">
+                    <div class="row justify-content-center">
+                      <span style="font-size: smaller;font-family: Gotham Book Regular">{{alertmessage}}</span>
+                    
+                      <div style="padding-left: 70%;padding-top: 6%;"><button class="btn-popup"  data-bs-dismiss="modal" aria-label="Close">Ok</button>
+                      </div>       
+                    </div>
+                  </div>
+                </div>
+          
+              </div>
+            </div>
+          </div>
+        
+  
+          <button id="warningbtn" class="alertbtn" style="display: none;" data-bs-toggle="modal" data-bs-target="#warningmessage" ></button>
+  

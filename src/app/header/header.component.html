@@ -1,0 +1,105 @@
+<header class="navbar sticky-top bg-white flex-md-nowrap p-0">
+  <div class="ms-2" >
+      <button class="navbar-toggler" type="button" (click)="openMenu()">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+  </div>
+  <!--div class="offcanvas offcanvas-start " tabindex="-1" id="offcanvasmenu" data-bs-keyboard="false" data-bs-backdrop="true">
+      <div class="offcanvas-header">
+          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          <h6 class="offcanvas-title  d-sm-block mx-auto" id="offcanvasmenu"><img src="assets/images/Swickard-Logo.png" class="img-fluid"></h6>
+      </div>
+      <div class="offcanvas-body px-0">
+          <nav id="sidebar">
+              <ul class="list-unstyled components">
+                 <li><a href="" data-toggle="collapse" aria-expanded="false">DATA</a></li>
+                 <li><a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">REPORTS </a>
+                      <ul class="collapse list-unstyled" id="homeSubmenu">
+                        <li>
+                          <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">SALES</a>
+                          <ul class="collapse list-unstyled" id="pageSubmenu">
+                            <li><a href="#">DAILY SALES</a></li>
+                            <li><a href="#">INVENTORY PROJECTIONS</a></li>
+                            <li><a href="#">F & I SUMMARY</a></li>
+                            <li><a href="#">DEALS</a></li>
+                          </ul>
+                        </li>
+                        <li>
+                          <a href="#pageSubmenu1" data-toggle="collapse" aria-expanded="false">Finance</a>
+                          <ul class="collapse list-unstyled" id="pageSubmenu1">
+                            <li><a href="#">DAILY SALES</a></li>
+                            <li><a href="#">INVENTORY PROJECTIONS</a></li>
+                            <li><a href="#">F & I SUMMARY</a></li>
+                            <li><a href="#">DEALS</a></li>
+                          </ul>
+                        </li>
+                      </ul>
+                 </li>
+                 <li><a href="" data-toggle="collapse" aria-expanded="false">EXCHANGE</a></li>
+                 <li><a href="" data-toggle="collapse" aria-expanded="false">UCAR</a></li>
+                 <li><a href="" data-toggle="collapse" aria-expanded="false">SERVICE MAX</a></li>
+                 <li><a href="" data-toggle="collapse" aria-expanded="false">TOUCH</a></li>
+                 
+              </ul>
+            </nav>
+      </div>
+  </div-->
+  <a class="navbar-brand ms-lg-3" href="#"><img src="assets/images/Launch.png" class="img-fluid"></a>
+  
+  <!-- <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button> -->
+  
+    <div class="d-lg-flex justify-content-start align-items-center">
+      <div class="heading d-lg-flex justify-content-start align-items-center">
+         <h1>{{componentDetails.title}}</h1>
+         <div *ngIf="componentDetails.path1 != ''" class="type">
+          
+            {{componentDetails.path1}} <span *ngIf="componentDetails.path2 != ''  ">//</span>{{componentDetails.path2}} <span *ngIf="componentDetails.path3 != ''  ">//</span>{{componentDetails.path3}}
+         
+         </div>
+         <img src="../../assets/images/analyze.png" alt="" style="cursor: pointer; margin-left: 1.5rem;" [ngStyle]="{'display':  componentDetails.title == 'Cit Floorplan Report' ? 'block' : 'none' }"  (click)="openAnalyze()">
+         <img src="assets/images/Filter.png" alt="" style="margin-left: 1.5rem;" [ngStyle]="{'cursor': title == 'Sales Gross' || title == 'Service Gross'? 'pointer' : 'default' }" (click)="openFilter()">
+                  <!-- <img src="../../assets/images/analyze.png" alt="" style="cursor: pointer; margin-left: 1.5rem;display: none;" (click)="openAnalyze()">  -->
+       
+         <!-- <div class="icons">
+             <img src="assets/images/Action.png" class="img-fluid" alt="">
+             <img src="assets/images/Chat.png" class="img-fluid" alt="">
+             <img src="assets/images/Favourite.png" class="img-fluid" alt="">
+             <img src="assets/images/Export.png" class="img-fluid" alt="">
+             <img src="assets/images/Print.png" class="img-fluid" alt="">
+             <img src="assets/images/settings.png" class="img-fluid" alt="">
+         </div> -->
+        </div>
+     </div>
+
+     <div class="d-lg-flex justify-content-end ms-lg-auto me-lg-5">
+      <div class="heading mt-lg-0 mt-3 d-flex justify-content-end align-items-center">
+       <div class="icons me-auto">
+         <img src="assets/images/Action.png" class="img-fluid" alt="" style="cursor:default" >
+         <img src="assets/images/Chat.png" class="img-fluid" alt="" style="cursor:default">
+         <img src="assets/images/Favourite.png" class="img-fluid" alt="" style="cursor:default">
+         <img src="assets/images/Export.png" class="img-fluid" alt="" (click)="exportAsXLSX()" style="cursor:default">
+         <img src="assets/images/Print.png" class="img-fluid" alt="" (click)="exportAsPDF()" [ngStyle]="{'cursor': title == 'Sales Gross' || title == 'Account Mapping'? 'pointer': 'default' }">
+         <img src="assets/images/settings.png" class="img-fluid" alt="" style="cursor:default">
+       </div>
+      </div>
+   </div>
+  
+   <div class=" d-flex align-items-center mx-auto mx-lg-0 pe-lg-4 py-2 py-lg-0 ">
+       
+      <div class="prof">
+        <!-- <div class="prof_pic"> </div> -->
+        <div class="text">
+          <div class="grt">Prasad Chavali</div>
+          <div class="name"><span>Super Admin</span></div>
+        </div>
+      </div>
+      <div><img src="../../assets/images/Xtract_logo.png" class="img-fluid "> </div>
+  </div>
+</header>
+
+<div class="Refresh col-12 pe-3"> <div class="RefreshTitle col-3">Updated: </div> <div class="RefreshDate col-3">{{updatedDate}}</div> @ <div class="RefreshTime col-3">{{updatedTime}}</div>  
+<!-- <img src="../../assets/images/refresh_icon.png" alt="">  -->
+</div>
+
