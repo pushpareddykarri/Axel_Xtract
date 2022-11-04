@@ -261,7 +261,7 @@
             <thead>
               <tr style="border-right: none;box-shadow: inset 0 -5px 0 #2d91f1;">
                 <th class="sel_all" *ngIf="statusFilter.indexOf('N')>=0 && NoData==false "
-                  style="width: 5% !important;">Select All&nbsp;<input type="checkbox" id="symbols"
+                  style="width: 11% !important;">Select All&nbsp;<input type="checkbox" id="symbols"
                     (change)="collectBulkEditvalues($event,'','All')"></th>
                 <th>Store Name</th>
                 <th>Account Description </th>
@@ -916,6 +916,7 @@
                       <th>Account Description </th>
                       <th>Account Type</th>
                       <th>Account #</th>
+                      <th  *ngIf="bulkEditRecords.length>1"></th>
                       <!-- <th >Map Status </th> -->
                       <!-- <th>Account Type</th>
                                     <th> Standard Mapping </th>                               
@@ -923,11 +924,17 @@
                     </tr>
                   </thead>
                   <tbody style="background-color: #f5f9f7;">
-                    <tr *ngFor="let Bulk of bulkEditRecords">
+                    <tr *ngFor="let Bulk of bulkEditRecords let i=index">
                       <td>{{  Bulk.StoreName == null ? '-' : Bulk.StoreName}}</td>
                       <td>{{  Bulk.AccountDescription == null ? '-' : Bulk.AccountDescription}}</td>
                       <td style="text-align: center;">{{  Bulk.AccountType == null ? '-' : Bulk.AccountType}}</td>
                       <td>{{  Bulk.Account == null ? '-' :  Bulk.Account}}</td>
+                      <td *ngIf="bulkEditRecords.length>1">  <div class="col-2 d-flex ">
+                        
+                        <i class="fa fa-trash" style="color: black;"   (click)="removeignore(i,'map')"></i>
+                        <button type="submit" class="btn btn-primary ms-1" style="width: 61px;"
+                        (click)="removeignore(i,'map')">Remove</button>
+                      </div></td>
                       <!-- <td >{{  Bulk.AccountType == null ? '-' :  Bulk.AccountType}}</td>
                                   <td>-</td>
                                     <td>-</td> -->
@@ -1309,6 +1316,7 @@
                       <th>Account Description </th>
                       <th>Account Type</th>
                       <th>Account #</th>
+                      <th *ngIf="bulkEditRecords.length>1"></th>
                       <!-- <th >Map Status </th> -->
                       <!-- <th>Account Type</th>
                                     <th> Standard Mapping </th>                               
@@ -1316,11 +1324,17 @@
                     </tr>
                   </thead>
                   <tbody style="background-color: #f5f9f7;">
-                    <tr *ngFor="let Bulk of bulkEditRecords">
+                    <tr *ngFor="let Bulk of bulkEditRecords let i=index">
                       <td>{{  Bulk.StoreName == null ? '-' : Bulk.StoreName}} </td>
                       <td>{{  Bulk.AccountDescription == null ? '-' : Bulk.AccountDescription}}</td>
                       <td style="text-align: center;">{{  Bulk.AccountType == null ? '-' : Bulk.AccountType}}</td>
                       <td>{{  Bulk.Account == null ? '-' :  Bulk.Account}}</td>
+                      <td *ngIf="bulkEditRecords.length>1">  <div class="col-2 d-flex ">
+                    
+                          <!-- <i class="fa fa-trash" style="color: black;" (click)="removeignore(i,'ignore')"></i> -->
+                          <button type="submit" class="btn btn-primary ms-1" style="width: 61px;"
+                          (click)="removeignore(i,'ignore')">Remove</button>
+                      </div></td>
                       <!-- <td >{{  Bulk.AccountType == null ? '-' :  Bulk.AccountType}}</td>
                                   <td>-</td>
                                     <td>-</td> -->
@@ -1551,3 +1565,5 @@
 </ng-template>
 
 <!-- <button id="validation" [hidden]='true' data-bs-toggle="modal" data-bs-target="#alert" > </button> -->
+
+

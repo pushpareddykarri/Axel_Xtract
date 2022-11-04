@@ -1649,6 +1649,11 @@ export class AccountMappingComponent implements OnInit {
   }
 
   save() {
+    let bulkedits = this.bulkEditRecords.map(function (a) {
+      return a.Account;
+    });
+    this.bulksave = bulkedits.toString();
+    console.log(this.bulksave);
     let finsum =
       this.Dfinancialsummary == ''
         ? this.financialsummary
@@ -1856,6 +1861,28 @@ export class AccountMappingComponent implements OnInit {
   }
 
   Ignoresave() {
+    console.log(this.bulkEditRecords.length)
+ 
+    if (this.bulkEditRecords.length > 1) {
+      if (this.statusFilter[0] == 'N') {
+        this.FinalArrayunmapped=[]
+        for (var i = 0; i < this.bulkEditRecords.length; i++) {
+          this.FinalArrayunmapped.push({
+            Key: this.bulkEditRecords[i].Account,
+            Cora_Acct_Code: this.bulkEditRecords[i].cora_acct_code,
+            Account_Number: this.bulkEditRecords[i].accountnumber,
+            Account_Description: this.bulkEditRecords[i].AccountDescription,
+            Account_Type: this.bulkEditRecords[i].AccountType,
+            AUM_Status: 'D',
+            AUM_Department:  this.bulkEditRecords[i].Department,
+            AUM_Subtype:this.bulkEditRecords[i].Subtype,
+            AUM_Subtype_Detail:this.bulkEditRecords[i]. SubtypeDetail,
+          });
+        }
+      }
+      console.log(this.FinalArray);
+    }
+   console.log(this.FinalArrayunmapped)
     // if (this.statusFilter[0] == 'M') {
     //   console.log(this.FinalArray);
 
@@ -2006,5 +2033,26 @@ export class AccountMappingComponent implements OnInit {
           }
         );
     }
+  }
+
+  removeignore(x,ref){
+    console.log(x)
+    if(ref=='ignore'){
+      // var delBtn = confirm(" Do you want to delete ?");
+      // if ( delBtn == true ) {
+        this.bulkEditRecords[x].state=false
+        this.bulkEditRecords.splice(x, 1 );
+        console.log( this.bulkEditRecords)
+      // }   
+    }
+    else{
+      // var delBtn = confirm(" Do you want to delete ?");
+      // if ( delBtn == true ) {
+        this.bulkEditRecords[x].state=false
+        this.bulkEditRecords.splice(x, 1 );
+        console.log( this.bulkEditRecords)
+      // }   
+    }
+  
   }
 }
